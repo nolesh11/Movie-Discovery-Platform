@@ -1,0 +1,10 @@
+body {
+  background-color: var(--color-dark-08);
+}
+
+@media (max-width: 640px) {
+  #root{
+    padding: 0 var(--spacing-sm);
+  }
+  
+}
