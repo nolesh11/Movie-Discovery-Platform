@@ -2,4 +2,56 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  padding-top: var(--spacing-xl);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0 var(--spacing-sm);
+  padding: 1.25rem 1.875rem;
+  background-color: var(--color-dark-06);
+  border-radius: .625rem;
+  border: .1875rem solid var(--color-dark-10);
+}
+
+.nav-link {
+  color: var(--color-gray-75);
+}
+
+.active-page {
+  padding: .875rem var(--spacing-md);
+  background-color: var(--color-dark-10);
+  color: var(--color-absolute-white);
+  border-radius: var(--spacing-xs);
+}
+
+.header-btn {
+  display: flex;
+  flex-direction: row;
+  gap: .875rem;
+}
+
+@media (max-width: 640px) {
+  .isActive {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-nav {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (min-width: 1280px) {
+  .header-nav {
+    gap: 0 1.875rem;
+    font-size: 1.125rem;
+  }
+
+  .header-btn {
+    gap: 1.875rem;
+  }
 }

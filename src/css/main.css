@@ -1,10 +1,35 @@
 body {
   background-color: var(--color-dark-08);
+  color: var(--color-absolute-white);
+  font-family: var(--font-primary);
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 640px) {
-  #root{
+  #root {
     padding: 0 var(--spacing-sm);
   }
-  
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+ #root {
+    padding: 0 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+   #root {
+    padding: 0 10rem;
+  }
 }

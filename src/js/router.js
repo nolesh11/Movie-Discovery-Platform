@@ -21,8 +21,25 @@ function renderRouter() {
   main.append(renderPage());
 }
 
+function updateActiveLink() {
+  const links = document.querySelectorAll('.nav-link');
+  const hash = window.location.hash;
+  
+  links.forEach(link => {
+    if (link.getAttribute('href') === hash) {
+      link.classList.add('active-page');
+    } else {
+      link.classList.remove('active-page');
+    } 
+  });  
+}
+
+
 export function initRouter() {
   window.addEventListener('hashchange', renderRouter);
   window.addEventListener('load', renderRouter);
+  window.addEventListener('hashchange', updateActiveLink);
+  window.addEventListener('load', updateActiveLink);
   renderRouter();
+  updateActiveLink();
 }

@@ -1,4 +1,5 @@
 import { Header } from './Header.js';
+import { MobileNav } from './MobileNav.js';
 
 export function Layout() {
   const root = document.createElement('div');
@@ -12,6 +13,6 @@ export function Layout() {
     <p>&copy; 2026 Movie Discovery Platform</p>
   `;
 
-  root.append(Header(), main, footer);
+  root.append(Header(), main, footer, MobileNav());
   return root;
 }
