@@ -23,7 +23,7 @@ function renderRouter() {
 
 function updateActiveLink() {
   const links = document.querySelectorAll('.nav-link');
-  const hash = window.location.hash;
+  const hash = window.location.hash || '#/home';
   
   links.forEach(link => {
     if (link.getAttribute('href') === hash) {
