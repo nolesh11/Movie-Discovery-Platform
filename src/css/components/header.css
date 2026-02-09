@@ -10,7 +10,7 @@ header {
   display: flex;
   align-items: center;
   gap: 0 var(--spacing-sm);
-  padding: 1.25rem 1.875rem;
+  padding: .625rem 1.875rem;
   background-color: var(--color-dark-06);
   border-radius: .625rem;
   border: .1875rem solid var(--color-dark-10);

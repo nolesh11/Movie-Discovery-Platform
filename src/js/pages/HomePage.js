@@ -38,8 +38,16 @@ export function HomePage() {
     const section = document.createElement('section');
     section.className = 'genre-section';
     section.innerHTML = `
-      <h2>Explore our wide variety of categories</h2>
-      <p>Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
+      <div class='genre-header>
+        <div class='genre-info>
+        <h2>Explore our wide variety of categories</h2>
+          <p>Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
+        </div>
+        <div class='genre-btns>
+          <button id='genre-prev'><img src='./assets/icons/prevArrow.svg' /></button>
+          <button id='genre-prev'><img src='./assets/icons/nextArrow.svg' /></button>
+      </div>
+      
       <div class='genre-list'>
         ${data.genres.slice(0, 5).map(elem => {
           return `
@@ -71,6 +79,54 @@ export function HomePage() {
     });
 
   });
+
+  const test = [1,2,3,4,5,6,7,8,9]; 
+  console.log(test);
+  const prev = document.createElement('div');
+  const next = document.createElement('div');
+  prev.textContent = 'Prev';
+  next.textContent = 'Next'
+
+  function test1(array, pageSize, step, prev, next) {
+    let startIndex = 0;
+    const content = document.createElement('div')
+    const testContainer = document.createElement('div');
+
+    next.addEventListener('click', () => {
+      const max = Math.max(0, array.length - pageSize)
+      if (startIndex + step <= max) {
+        startIndex += step;
+        console.log(startIndex);
+      }
+      render()
+    })
+
+    prev.addEventListener('click', () => {
+      if (startIndex - step >= 0) {
+        startIndex -= step;
+        console.log(startIndex);
+      }
+      render()
+    })
+
+    function render() {
+      content.innerHTML = `
+        ${array.slice(startIndex, startIndex + pageSize).map(e => {
+          return `
+            <div>${e}</div>
+          `
+        }).join('')}
+      `
+    
+    }
+    
+    testContainer.append(content, prev, next)
+    container.append(testContainer)
+
+    render();
+  }
+
+  test1(test, 3, 3, prev, next)
 
   return container;
 }
