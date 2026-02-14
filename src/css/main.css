@@ -10,7 +10,22 @@ body {
   flex-direction: column;
 }
 
+h2 {
+  font-size: var(--font-size-lg);
+  margin-bottom: .625rem;
+}
+h3 {
+  font-size: 1.125rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+
 p {
+  font-size: var(--font-size-sm);
   color: var(--color-gray-60);
 }
 
@@ -30,10 +45,35 @@ p {
  #root {
     padding: 0 5rem;
   }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: .875rem;
+  }
+
+  h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  p {
+    font-size: var(--font-size-base);
+  }
 }
 
 @media (min-width: 1280px) {
    #root {
     padding: 0 10rem;
+  }
+
+  h2 {
+    font-size: 2.375rem;
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  p {
+    font-size: 1.125rem;   
   }
 }

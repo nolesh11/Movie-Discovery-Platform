@@ -40,9 +40,9 @@ export async function HomePage() {
   };
 
   function createGenreSection(genres, movies) {
-    const section = document.createElement('section');
-    section.className = 'genre-section';
-    section.innerHTML = `
+    const genreSection = document.createElement('section');
+    genreSection.className = 'genre-section';
+    genreSection.innerHTML = `
       <div class='genre-header'>
         <div class='genre-info'>
           <h2>Explore our wide variety of categories</h2>
@@ -57,9 +57,9 @@ export async function HomePage() {
       <div class='genre-list'></div>
     `;
     
-    const listEl = section.querySelector('.genre-list');
-    const prevBtn = section.querySelector('.genre-prev');
-    const nextBtn = section.querySelector('.genre-next');
+    const listEl = genreSection.querySelector('.genre-list');
+    const prevBtn = genreSection.querySelector('.genre-prev');
+    const nextBtn = genreSection.querySelector('.genre-next');
 
     let startIndex = 0;
     const pageSize = 4;
@@ -82,7 +82,7 @@ export async function HomePage() {
   
 
     function hydratePosters() {
-      const containers = section.querySelectorAll('.genre-img-list');
+      const containers = genreSection.querySelectorAll('.genre-img-list');
       containers.forEach(containerEl => {
         const genreid = Number(containerEl.dataset.genreId);
 
@@ -116,8 +116,76 @@ export async function HomePage() {
 
     render();
 
-    return section;
-  
+    return genreSection;
   }
+
+  const deviceCompatibilitySection = document.createElement('section');
+  deviceCompatibilitySection.className = 'deviceCompatibilitySection';
+  deviceCompatibilitySection.innerHTML = `
+    <div class='device-compatibility-header'>
+      <h2>We Provide you streaming experience across various devices.</h2>
+      <p>With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere.</p>
+    </div>
+
+    <div class='device-compatibility-info'>
+      <div class='device-compatibility-info___card'>
+        <div class='card-name'>
+          <div class='card-img'>
+            <img src='./assets/icons/cardPhone.svg' />
+          </div>
+          <h3>Smartphones</h3>
+        </div>
+        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+      </div>
+      <div class='device-compatibility-info___card'>
+        <div class='card-name'>
+          <div class='card-img'>
+            <img src='./assets/icons/cardTablet.svg' />
+          </div>
+          <h3>Smartphones</h3>
+        </div>
+        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+      </div>
+      <div class='device-compatibility-info___card'>
+        <div class='card-name'>
+          <div class='card-img'>
+            <img src='./assets/icons/cardTv.svg' />
+          </div>
+          <h3>Smartphones</h3>
+        </div>
+        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+      </div>
+      <div class='device-compatibility-info___card'>
+        <div class='card-name'>
+          <div class='card-img'>
+            <img src='./assets/icons/cardLaptop.svg' />
+          </div>
+          <h3>Smartphones</h3>
+        </div>
+        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+      </div>
+      <div class='device-compatibility-info___card'>
+        <div class='card-name'>
+          <div class='card-img'>
+            <img src='./assets/icons/cardGaming.svg' />
+          </div>
+          <h3>Smartphones</h3>
+        </div>
+        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+      </div>
+      <div class='device-compatibility-info___card'>
+        <div class='card-name'>
+          <div class='card-img'>
+            <img src='./assets/icons/cardVr.svg' />
+          </div>
+          <h3>Smartphones</h3>
+        </div>
+        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+      </div>
+    </div>
+  `
+
+  container.append(deviceCompatibilitySection);
+
   return container;
 }

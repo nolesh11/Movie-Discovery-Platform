@@ -4,9 +4,6 @@
   padding: 0;
 }
 
-*:not(dialog) {
-  margin: 0;
-}
 
 input, button, textarea, select {
   font: inherit;
