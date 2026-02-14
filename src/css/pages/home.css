@@ -47,10 +47,53 @@
   font-size: var(--font-size-sm );
 }
 
-.genre-list {
+.genre-section {
+  margin-bottom: 3.125rem;
+}
+
+.genre-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xl);
+}
+
+.genre-header h2 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.genre-header p {
+  margin-bottom: var(--spacing-xs);
+}
+
+.genre-btns {
+  width: 12.5rem;
+  padding: .875rem var(--spacing-md);
   display: flex;
   justify-content: center;
-  gap: 30px;
+  align-self: flex-start;
+  gap: var(--spacing-md);
+  background-color: var(--color-dark-06);
+  border-radius: .75rem;
+  border: .0625rem solid var(--color-dark-20);
+}
+
+.genre-btn-bgc {
+  background-color: var(--color-dark-10);
+  padding: .875rem;
+}
+
+.genre-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.genre-list a {
+  background-color: var(--color-dark-10);
+  padding: var(--spacing-md);
+  border-radius: .625rem;
+  border: .0625rem solid var(--color-dark-15)
 }
 
 .genre-img-list {
@@ -58,11 +101,12 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-xs);
   aspect-ratio: 1 / 1;  
-  overflow: hidden; 
-  gap: 0;                   
+  overflow: hidden;               
   place-items: stretch;     
   place-content: stretch;
+  margin-bottom: var(--spacing-md);
 }
 
 .genre-img-list img {
@@ -70,7 +114,18 @@
   height: 100%;
   object-fit: cover; 
   object-position: center;   
+  border-radius: .625rem;
 }
+
+.genre-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: var(--font-size-sm);
+}
+
+/* media queries */
 
 @media (min-width: 640px) {
   .hero h1 {
@@ -103,7 +158,20 @@
     width: 4rem;
     height: 4.375rem;
     top: 48%;
+  }
 
+  .genre-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .genre-btns {
+    margin: 0;
+  }
+
+  .genre-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
   }
 }
 

@@ -31,10 +31,36 @@ export const tmdbAPI = {
       language: 'en-US',
     });
   },
-  getMovies() {
-    return request('/discover/movie', {
-      language: 'en-US',
-      page: 1,
-    });
+  // getMovies() {
+  //   return request('/discover/movie', {
+  //     language: 'en-US',
+  //     page: 1,
+  //   });
+  // }
+};
+
+export async function getMoviesPage(page = 1) {
+  return request('/discover/movie', {
+    language: 'en-US',
+    page,
+  })
+}
+
+export async function getMoviespages(pageCount = 1) {
+  const pages = [];
+  for(let p = 1; p <= pageCount; p++) {
+    pages.push(p);
   }
+
+  const responses = await Promise.all(
+    pages.map(p => getMoviesPage(p))
+  )
+
+  const allmovies = [];
+
+  for(const r of responses) {
+    allmovies.push(...r.results)
+  }
+
+  return allmovies;
 }

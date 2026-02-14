@@ -1,7 +1,6 @@
-import { tmdbAPI } from '../api/api.js';
-import { BASE_URL } from '../api/api.js';
+import { tmdbAPI, getMoviespages } from '../api/api.js';
 
-export function HomePage() {
+export async function HomePage() {
   const container = document.createElement('div');
   container.id = 'main-page';
   container.innerHTML = `
@@ -19,6 +18,12 @@ export function HomePage() {
      </section>
   `;
 
+  const genresData = await tmdbAPI.getGenreMovies();
+  const movies = await getMoviespages(40);
+
+  const genreSection = createGenreSection(genresData.genres, movies);
+  container.append(genreSection);
+
   function renderPosters(containerEl, movies, limit) {
     containerEl.innerHTML = '';
 
@@ -34,99 +39,85 @@ export function HomePage() {
     });
   };
 
-  tmdbAPI.getGenreMovies().then(data => {
+  function createGenreSection(genres, movies) {
     const section = document.createElement('section');
     section.className = 'genre-section';
     section.innerHTML = `
-      <div class='genre-header>
-        <div class='genre-info>
-        <h2>Explore our wide variety of categories</h2>
+      <div class='genre-header'>
+        <div class='genre-info'>
+          <h2>Explore our wide variety of categories</h2>
           <p>Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
         </div>
-        <div class='genre-btns>
-          <button id='genre-prev'><img src='./assets/icons/prevArrow.svg' /></button>
-          <button id='genre-prev'><img src='./assets/icons/nextArrow.svg' /></button>
+        <div class='genre-btns'>
+          <button class='genre-prev genre-btn-bgc'><img src='./assets/icons/prevArrow.svg' /></button>
+          <button class='genre-next genre-btn-bgc'><img src='./assets/icons/nextArrow.svg' /></button>
+        </div>
       </div>
-      
-      <div class='genre-list'>
-        ${data.genres.slice(0, 5).map(elem => {
-          return `
-            <a href="#/search?genre=${elem.id}" class='genre-item'>
-              <div class='genre-img-list' data-genre-id='${elem.id}'></div>
-              <div class=genre-footer>
-                <span>${elem.name}</span>
-                <img src='./assets/icons/arrowRight.svg' />
-              </div>
-            </a>
-          `
-        }).join('')}
-      </div>
-    `
-    container.append(section);
 
-    tmdbAPI.getMovies().then(data => {
-      const containers = document.querySelectorAll('.genre-img-list');
+      <div class='genre-list'></div>
+    `;
+    
+    const listEl = section.querySelector('.genre-list');
+    const prevBtn = section.querySelector('.genre-prev');
+    const nextBtn = section.querySelector('.genre-next');
 
-      containers.forEach(containerEl => {
-        const genreId = Number(containerEl.dataset.genreId);
-
-        const moviesForGenre = data.results.filter(movie =>
-          Array.isArray(movie.genre_ids) && movie.genre_ids.includes(genreId)
-        );
-
-        renderPosters(containerEl, moviesForGenre, 4);
-      });
-    });
-
-  });
-
-  const test = [1,2,3,4,5,6,7,8,9]; 
-  console.log(test);
-  const prev = document.createElement('div');
-  const next = document.createElement('div');
-  prev.textContent = 'Prev';
-  next.textContent = 'Next'
-
-  function test1(array, pageSize, step, prev, next) {
     let startIndex = 0;
-    const content = document.createElement('div')
-    const testContainer = document.createElement('div');
+    const pageSize = 4;
+    const step = 4;
 
-    next.addEventListener('click', () => {
-      const max = Math.max(0, array.length - pageSize)
-      if (startIndex + step <= max) {
-        startIndex += step;
-        console.log(startIndex);
-      }
-      render()
-    })
+    function renderGenres() {
+      listEl.innerHTML = genres
+        .slice(startIndex, startIndex + pageSize)
+        .map(g => `
+          <a href="#/search?genre=${g.id}" class='genre-item'>
+            <div class='genre-img-list' data-genre-id='${g.id}'></div>
+            <div class='genre-footer'>
+              <span>${g.name}</span>
+              <img src='./assets/icons/arrowRight.svg' />
+            </div>
+          </a>
+        `)
+        .join('');
+    }
+  
 
-    prev.addEventListener('click', () => {
-      if (startIndex - step >= 0) {
-        startIndex -= step;
-        console.log(startIndex);
-      }
-      render()
-    })
+    function hydratePosters() {
+      const containers = section.querySelectorAll('.genre-img-list');
+      containers.forEach(containerEl => {
+        const genreid = Number(containerEl.dataset.genreId);
+
+        const moviesForGenres = movies.filter(m => 
+          Array.isArray(m.genre_ids) && m.genre_ids.includes(genreid)
+        )
+
+        renderPosters(containerEl, moviesForGenres, 4);
+      })
+    }
 
     function render() {
-      content.innerHTML = `
-        ${array.slice(startIndex, startIndex + pageSize).map(e => {
-          return `
-            <div>${e}</div>
-          `
-        }).join('')}
-      `
-    
+      renderGenres();
+      hydratePosters();
+
+      const maxStart = Math.max(0, genres.length - pageSize);
+      prevBtn.disabled = startIndex === 0;
+      nextBtn.disabled = startIndex === maxStart;
     }
-    
-    testContainer.append(content, prev, next)
-    container.append(testContainer)
+
+    prevBtn.addEventListener('click', () => {
+      startIndex = Math.max(0, startIndex - step);
+      render();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const maxStart = Math.max(0, genres.length - pageSize);
+      startIndex = Math.min(maxStart, startIndex + step);
+      render();
+    });
 
     render();
+
+    return section;
+  
   }
-
-  test1(test, 3, 3, prev, next)
-
   return container;
 }

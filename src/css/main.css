@@ -10,6 +10,10 @@ body {
   flex-direction: column;
 }
 
+p {
+  color: var(--color-gray-60);
+}
+
 @media (max-width: 640px) {
   #root {
     padding: 0 var(--spacing-sm);
