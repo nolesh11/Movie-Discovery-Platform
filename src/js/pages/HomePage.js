@@ -19,7 +19,7 @@ export async function HomePage() {
   `;
 
   const genresData = await tmdbAPI.getGenreMovies();
-  const movies = await getMoviespages(40);
+  const movies = await getMoviespages(5);
 
   const genreSection = createGenreSection(genresData.genres, movies);
   container.append(genreSection);
@@ -135,7 +135,7 @@ export async function HomePage() {
           </div>
           <h3>Smartphones</h3>
         </div>
-        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+        <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
       <div class='device-compatibility-info___card'>
         <div class='card-name'>
@@ -144,7 +144,7 @@ export async function HomePage() {
           </div>
           <h3>Smartphones</h3>
         </div>
-        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+        <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
       <div class='device-compatibility-info___card'>
         <div class='card-name'>
@@ -153,7 +153,7 @@ export async function HomePage() {
           </div>
           <h3>Smartphones</h3>
         </div>
-        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+        <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
       <div class='device-compatibility-info___card'>
         <div class='card-name'>
@@ -162,7 +162,7 @@ export async function HomePage() {
           </div>
           <h3>Smartphones</h3>
         </div>
-        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+        <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
       <div class='device-compatibility-info___card'>
         <div class='card-name'>
@@ -171,7 +171,7 @@ export async function HomePage() {
           </div>
           <h3>Smartphones</h3>
         </div>
-        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+        <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
       <div class='device-compatibility-info___card'>
         <div class='card-name'>
@@ -180,12 +180,84 @@ export async function HomePage() {
           </div>
           <h3>Smartphones</h3>
         </div>
-        <p class='card=discription'>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
+        <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
     </div>
   `
-
   container.append(deviceCompatibilitySection);
+
+  const faqSection = document.createElement('section');
+  faqSection.className = 'faqSection';
+  faqSection.innerHTML = `
+    <div class='faq-header'>
+      <div class='faq-header-info'>
+        <h2>Frequently Asked Questions</h2>
+        <p>Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about StreamVibe.</p>
+      </div>
+      <div class='faq-header-info-btn'>
+        <button>Ask a Question</button>
+      </div>  
+    </div>
+
+    <div class='faq-questions'>
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <div class='faq-question-number'>01</div>
+          <h3>What is StreamVibe?</h3>
+          <div class='open closed'></div>
+        </div>
+        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <div class='faq-question-number'>02</div>
+          <h3>How much does StreamVibe cost?</h3>
+          <span class='open closed'></span>
+        </div>
+        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <div class='faq-question-number'>03</div>
+          <h3>What content is available on StreamVibe?</h3>
+          <span class='open closed'></span>
+        </div>
+        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <div class='faq-question-number'>04</div>
+          <h3>How can I watch StreamVibe?</h3>
+          <span class='open closed'></span>
+        </div>
+        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <div class='faq-question-number'>05</div>
+          <h3>How do I sign up for StreamVibe?</h3>
+          <span class='open closed'></span>
+        </div>
+        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <div class='faq-question-number'>06</div>
+          <h3>What is the StreamVibe free trial?</h3>
+          <span class='open closed'></span>
+        </div>
+        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+    </div>
+
+  `;
+
+  container.append(faqSection);
 
   return container;
 }
