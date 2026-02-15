@@ -180,8 +180,6 @@
   margin-bottom: var(--spacing-xl);
 }
 
-
-
 .faq-header-info-btn button {
   padding: .875rem 1.25rem;
   font-size: var(--font-size-sm);
@@ -197,17 +195,76 @@
   gap: var(--spacing-xl);
 }
 
+.faq-question {
+  position: relative;
+}
+
+.faq-question:not(:first-child)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--color-dark-06),
+    var(--color-primary-45),
+    var(--color-dark-06)
+  );
+  margin-top: -1.25rem;
+}
+
+.faq-question:nth-child(7), .faq-question:nth-child(8) {
+  display: none;
+}
+
+.faq-question p:first-child {
+  background: var(--color-dark-12);
+  padding: .75rem;
+  color: var(--color-absolute-white);
+  font-weight: 600;
+  text-align: center;
+  border-radius: .375rem;
+  border: .125rem solid var(--color-dark-15);
+}
+
+.faq-description {
+  display: none
+}
+
+.faq-description.visiable {
+  display: block;
+  margin-top: .75rem;
+}
+
 .faq-question-info {
   display: flex;
   gap: var(--spacing-sm);
   align-items: center;
+  color: var(--color-absolute-white);
 }
 
-.closed {
+.faq-question-btn {
+  margin-left: auto;
+  display: grid;
+}
+
+.faq-question-btn span {
+  grid-area: 1/1;
+  display: block;  
+  background: var(--color-absolute-white);
   width: var(--spacing-sm);
   height: .125rem;
-  background-color: var(--color-absolute-white);
-  margin-left: auto;
+}
+
+.faq-question-btn span:nth-child(2) {
+  transform: rotate(90deg);
+}
+
+.faq-question-btn span.is-closed {
+  display: none;
 }
 
 
@@ -300,7 +357,19 @@
   .faq-questions {
     grid-template-columns: repeat(2, 1fr);
   }  
-}
+
+  .faq-question:nth-child(7), .faq-question:nth-child(8) {
+    display: block;
+  }
+
+  .faq-question:nth-child(2)::after {
+    content: none;
+  }
+
+  .faq-description.visiable {
+    margin-left: 4rem;
+  }
+} 
 
 @media (min-width: 1280px) {
   #main-page {
@@ -367,4 +436,7 @@
   .faq-header-info-btn button {
     font-size: 1.125rem;
   }
+  /* .faq-question p:first-child {
+    width: 4.0625rem;
+  } */
 }

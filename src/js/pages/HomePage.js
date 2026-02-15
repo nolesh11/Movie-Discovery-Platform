@@ -202,62 +202,119 @@ export async function HomePage() {
     <div class='faq-questions'>
       <div class='faq-question'>
         <div class='faq-question-info'>
-          <div class='faq-question-number'>01</div>
+          <p>0 1</p>
           <h3>What is StreamVibe?</h3>
-          <div class='open closed'></div>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
       </div>
 
       <div class='faq-question'>
         <div class='faq-question-info'>
-          <div class='faq-question-number'>02</div>
+          <p>02</p>
           <h3>How much does StreamVibe cost?</h3>
-          <span class='open closed'></span>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
       </div>
 
       <div class='faq-question'>
         <div class='faq-question-info'>
-          <div class='faq-question-number'>03</div>
+          <p>03</p>
           <h3>What content is available on StreamVibe?</h3>
-          <span class='open closed'></span>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
       </div>
 
       <div class='faq-question'>
         <div class='faq-question-info'>
-          <div class='faq-question-number'>04</div>
+          <p>04</p>
           <h3>How can I watch StreamVibe?</h3>
-          <span class='open closed'></span>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
       </div>
 
       <div class='faq-question'>
         <div class='faq-question-info'>
-          <div class='faq-question-number'>05</div>
+          <p>05</p>
           <h3>How do I sign up for StreamVibe?</h3>
-          <span class='open closed'></span>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
       </div>
 
       <div class='faq-question'>
         <div class='faq-question-info'>
-          <div class='faq-question-number'>06</div>
+          <p>06</p>
           <h3>What is the StreamVibe free trial?</h3>
-          <span class='open closed'></span>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-        <p>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <p>07</p>
+          <h3>How do I contact StreamVibe customer support?</h3>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
+      </div>
+
+      <div class='faq-question'>
+        <div class='faq-question-info'>
+          <p>08</p>
+          <h3>What are the StreamVibe payment methods?</h3>
+          <div class='faq-question-btn'>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <p class='faq-description'>StreamVibe is a streaming service that allows you to watch movies and shows on demand.</p>
       </div>
     </div>
-
   `;
 
   container.append(faqSection);
+
+  const listQuestions = faqSection.querySelector('.faq-questions');
+
+  listQuestions.addEventListener('click', (e) => {
+    const item = e.target.closest('.faq-question');
+    console.log('target', e.target);
+    console.log('btn', item);
+    if(!item) return;
+    
+    const desc = item.querySelector('.faq-description'); 
+    const btn = item.querySelector('.faq-question-btn');
+    const secondSpan = btn.children[1];
+
+    desc.classList.toggle('visiable')
+    secondSpan.classList.toggle('is-closed')
+  })
 
   return container;
 }
