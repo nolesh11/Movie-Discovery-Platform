@@ -267,6 +267,32 @@
   display: none;
 }
 
+.subscription-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.subscription-header-btns {
+  margin-top: 1.25rem;
+  padding: var(--spacing-xs);
+  width: fit-content;
+  background: var(--color-dark-06);
+  border-radius: var(--spacing-xs);
+  border: .0625rem solid var(--clor-dark-15);
+}
+
+.subscription-header-btns button {
+  color: var(--color-gray-60);
+  padding: .75rem 1.25rem;
+  font-size: var(--font-size-sm);
+}
+
+.subscription-header-btns button.subscription-hover {
+  background: var(--color-dark-12);
+  padding: .75rem 1.25rem;
+  color: var(--color-absolute-white);
+  border-radius: .375rem;
+}
+
 
 /* media queries */
 

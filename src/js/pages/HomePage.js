@@ -316,5 +316,72 @@ export async function HomePage() {
     secondSpan.classList.toggle('is-closed')
   })
 
+  const subscriptionSection = document.createElement('section');
+  subscriptionSection.className = 'subscription';
+
+  subscriptionSection.innerHTML = `
+    <div class='subscription-header'>
+      <div class='subscription-header-info'>
+        <h2>Choose the plan that's right for you</h2>
+        <p>Join StreamVibe and select from our flexible subscription options tailored to suit your viewing preferences. Get ready for non-stop entertainment!</p>
+      </div>
+      <div class='subscription-header-btns'>
+        <button class='subscription-btn subscription-hover'>Monthly</button>
+        <button class='subscription-btn'>Yearly</button>
+      </div>
+    </div>
+
+    <div class='subscription-plans'>
+      <div class='subscriprion-plan'>
+        <h3>Basic Plan</h3>
+        <p>Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.</p>
+        <div class='subscription-price'>
+          <span>$9.99</span>
+          <span>/month</span>
+        </div>
+        <div class='subscription-plan-btns'>
+          <button>Start free trial</button>
+          <button>Choose plan</button>
+        </div>
+      </div>
+      <div class='subscriprion-plan'>
+        <h3>Standard Plan</h3>
+        <p>Access to a wider selection of movies and shows, including most new releases and exclusive content</p>
+        <div class='subscription-price'>
+          <span>$12.99</span>
+          <span>/month</span>
+        </div>
+        <div class='subscription-plan-btns'>
+          <button>Start free trial</button>
+          <button>Choose plan</button>
+        </div>
+      </div>
+      <div class='subscriprion-plan'>
+        <h3>Premium Plan</h3>
+        <p>Access to a widest selection of movies and shows, including all new releases and Offline Viewing</p>
+        <div class='subscription-price'>
+          <span>$14.99</span>
+          <span>/month</span>
+        </div>
+        <div class='subscription-plan-btns'>
+          <button>Start free trial</button>
+          <button>Choose plan</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  container.append(subscriptionSection);
+
+  const buttons = subscriptionSection.querySelectorAll('.subscription-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('subscription-hover'));
+      btn.classList.add('subscription-hover');
+      
+    })
+  })
+
   return container;
 }
