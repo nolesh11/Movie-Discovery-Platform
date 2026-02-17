@@ -326,8 +326,8 @@ export async function HomePage() {
         <p>Join StreamVibe and select from our flexible subscription options tailored to suit your viewing preferences. Get ready for non-stop entertainment!</p>
       </div>
       <div class='subscription-header-btns'>
-        <button class='subscription-btn subscription-hover'>Monthly</button>
-        <button class='subscription-btn'>Yearly</button>
+        <button class='subscription-btn monthly-btn subscription-hover'>Monthly</button>
+        <button class='subscription-btn yearly-btn'>Yearly</button>
       </div>
     </div>
 
@@ -335,9 +335,13 @@ export async function HomePage() {
       <div class='subscriprion-plan'>
         <h3>Basic Plan</h3>
         <p>Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.</p>
-        <div class='subscription-price'>
+        <div class='subscription-price subscription-price-monthly'>
           <span>$9.99</span>
           <span>/month</span>
+        </div>
+        <div class='subscription-price subscription-price-yearly closed'>
+          <span>$19.99</span>
+          <span>/yearly</span>
         </div>
         <div class='subscription-plan-btns'>
           <button>Start free trial</button>
@@ -347,9 +351,13 @@ export async function HomePage() {
       <div class='subscriprion-plan'>
         <h3>Standard Plan</h3>
         <p>Access to a wider selection of movies and shows, including most new releases and exclusive content</p>
-        <div class='subscription-price'>
+        <div class='subscription-price subscription-price-monthly'>
           <span>$12.99</span>
           <span>/month</span>
+        </div>
+        <div class='subscription-price subscription-price-yearly closed'>
+          <span>$22.99</span>
+          <span>/yearly</span>
         </div>
         <div class='subscription-plan-btns'>
           <button>Start free trial</button>
@@ -359,9 +367,13 @@ export async function HomePage() {
       <div class='subscriprion-plan'>
         <h3>Premium Plan</h3>
         <p>Access to a widest selection of movies and shows, including all new releases and Offline Viewing</p>
-        <div class='subscription-price'>
+        <div class='subscription-price subscription-price-monthly'>
           <span>$14.99</span>
           <span>/month</span>
+        </div>
+        <div class='subscription-price subscription-price-yearly closed'>
+          <span>$34.99</span>
+          <span>/yearly</span>
         </div>
         <div class='subscription-plan-btns'>
           <button>Start free trial</button>
@@ -376,10 +388,22 @@ export async function HomePage() {
   const buttons = subscriptionSection.querySelectorAll('.subscription-btn');
 
   buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
       buttons.forEach(b => b.classList.remove('subscription-hover'));
       btn.classList.add('subscription-hover');
+
+      const yearlyBtn = e.target.closest('.yearly-btn');
       
+      const monthly = subscriptionSection.querySelectorAll('.subscription-price-monthly');
+      const yearly = subscriptionSection.querySelectorAll('.subscription-price-yearly');
+
+      if(yearlyBtn) {
+        yearly.forEach(y => y.classList.remove('closed'))
+        monthly.forEach(m => m.classList.add('closed'))
+      } else {
+        yearly.forEach(y => y.classList.add('closed'))
+        monthly.forEach(m => m.classList.remove('closed'))
+      }
     })
   })
 

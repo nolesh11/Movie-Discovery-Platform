@@ -293,6 +293,70 @@
   border-radius: .375rem;
 }
 
+.subscription-plans {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.subscriprion-plan {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--color-dark-10);
+  border-radius: .625rem;
+  border: .0625rem solid var(--color-dark-15);
+}
+
+.subscriprion-plan p {
+  margin-bottom: 1.875rem;
+}
+
+.subscription-price {
+  margin-bottom: 1.875rem;
+}
+
+.subscription-price span:first-child {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+
+.subscription-price span:last-child {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-60);
+}
+
+.subscription-price-monthly.closed {
+  display: none;
+}
+
+.subscription-price-yearly.closed {
+  display: none;
+}
+
+.subscription-plan-btns {
+  display: flex;
+  gap: .75rem;
+  width: 100%;
+}
+
+.subscription-plan-btns button {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-absolute-white);
+  padding: .975rem 1.25rem;
+  border-radius: .375rem;
+  flex: 1;
+}
+
+.subscription-plan-btns button:first-child {
+  background: var(--color-dark-08);
+  border: .0625rem solid var(--color-dark-15);
+}
+
+.subscription-plan-btns button:last-child {
+  background: var(--color-primary-45);
+}
+
 
 /* media queries */
 
@@ -395,6 +459,26 @@
   .faq-description.visiable {
     margin-left: 4rem;
   }
+
+  .subscription-plans {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .subscriprion-plan p {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .subscription-price {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .subscription-price span:first-child {
+    font-size: 1.875rem;
+  }
+
+  .subscription-price span:last-child {
+    font-size: var(--font-size-base);
+  }
 } 
 
 @media (min-width: 1280px) {
@@ -462,7 +546,22 @@
   .faq-header-info-btn button {
     font-size: 1.125rem;
   }
-  /* .faq-question p:first-child {
-    width: 4.0625rem;
-  } */
+
+  .subscriprion-plan p {
+    margin-bottom: 3.125rem;
+  }
+
+  .subscription-price {
+    margin-bottom: 3.125rem;
+  }
+
+  .subscription-price span:first-child {
+    font-size: 2.5rem;
+  }
+
+  .subscription-price span:last-child {
+    font-size: 1.125rem;
+  }
+
+
 }
