@@ -2,8 +2,9 @@ header {
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding-top: var(--spacing-xl);
   align-self: start;
+  padding: var(--spacing-xl) var(--spacing-sm) 0;
+
 }
 
 .header-nav {
@@ -54,6 +55,10 @@ header {
 }
 
 @media (min-width: 1024px) {
+  header {
+    padding: var(--spacing-xl) 5rem 0;
+  }
+
   .header-nav {
     justify-self: center;
     font-size: var(--font-size-sm);
@@ -61,6 +66,9 @@ header {
 }
 
 @media (min-width: 1280px) {
+  header {
+    padding: var(--spacing-xl) 10rem 0;
+  }
   .header-nav {
     gap: 0 1.875rem;
     font-size: 1.125rem;

@@ -30,19 +30,19 @@ p {
 }
 
 @media (max-width: 640px) {
-  #root {
+  #main {
     padding: 0 var(--spacing-sm);
   }
 }
 
 @media (min-width: 768px) {
-  #root {
+  #main {
     padding: 0 var(--spacing-md);
   }
 }
 
 @media (min-width: 1024px) {
- #root {
+ #main {
     padding: 0 5rem;
   }
 
@@ -61,7 +61,7 @@ p {
 }
 
 @media (min-width: 1280px) {
-   #root {
+  #main {
     padding: 0 10rem;
   }
 

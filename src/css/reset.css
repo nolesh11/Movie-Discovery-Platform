@@ -27,3 +27,6 @@ a {
   cursor: pointer;   
 }
 
+ul, li, li {
+  list-style: none;
+}
