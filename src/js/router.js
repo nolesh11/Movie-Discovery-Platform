@@ -1,13 +1,13 @@
 import { HomePage } from "./pages/HomePage.js";
-import { SearchPage } from "./pages/SearchPage.js";
-import { FavoritesPage } from "./pages/FavoritesPage.js";
-import { DetailsPage } from "./pages/DetailsPage.js";
+import { MoviesShowsPage } from "./pages/MoviesShowsPage.js";
+import { SupportPage } from "./pages/SupportPage.js";
+import { SubscriptionsPage } from "./pages/SubscriptionsPage.js";
 
 const routes = {
   "#/home": HomePage,
-  "#/search": SearchPage,
-  "#/favorites": FavoritesPage,
-  "#/details": DetailsPage,
+  "#/movies&shows": MoviesShowsPage,
+  "#/support": SupportPage,
+  "#/subscription": SubscriptionsPage,
 };
 
 async function renderRouter() {

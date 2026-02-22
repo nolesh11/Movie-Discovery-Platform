@@ -6,7 +6,7 @@ body {
 
 #root {
   height: 100vh;
-  display: flex;
+  display: grid;
   flex-direction: column;
 }
 

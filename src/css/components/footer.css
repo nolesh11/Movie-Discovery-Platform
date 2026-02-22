@@ -1,3 +1,7 @@
+footer {
+  align-self: end;
+}
+
 @media (max-width: 640px) {
   footer {
     display: none;

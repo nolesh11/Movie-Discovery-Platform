@@ -1,12 +1,13 @@
 header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   position: relative;
   padding-top: var(--spacing-xl);
+  align-self: start;
 }
 
 .header-nav {
+  width: fit-content;
   display: flex;
   align-items: center;
   gap: 0 var(--spacing-sm);
@@ -31,6 +32,19 @@ header {
   display: flex;
   flex-direction: row;
   gap: .875rem;
+  justify-self: end;
+}
+
+.header-btn input {
+  align-self: center;
+}
+
+.header-btn button {
+  flex: 0 0 auto;
+}
+
+.header-btn img {
+  width: 1.125rem;
 }
 
 @media (max-width: 640px) {
@@ -39,8 +53,9 @@ header {
   }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .header-nav {
+    justify-self: center;
     font-size: var(--font-size-sm);
   }
 }
