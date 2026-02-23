@@ -1,0 +1,95 @@
+.popular-movie-container {
+  width: 100%;   
+  aspect-ratio: 1 / 1.5;   
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: .75rem;
+  border: .0625rem solid var(--color-dark-15);
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-sm);
+  margin-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.popular-movie-container h2 {
+  text-align: center;
+}
+
+.popular-movie-container p {
+  display: none;
+}
+
+.popular-movie-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-movie-btn button {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  color: var(--color-absolute-white);
+  background: var(--color-primary-45);
+  padding: .875rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--spacing-xs);
+}
+
+.popular-movie-img-btn {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+.popular-movie-img-btn div {
+  background: var(--color-dark-06);
+  border-radius: var(--spacing-xs);
+  border: .0625rem solid var(--color-dark-15);
+  padding: .75rem;
+}
+
+.popular-movie-img-btn img {
+  flex-shrink: 0;
+}
+
+.popular-movie-carusel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popular-movie-carusel button {
+  margin-top: 1.25rem;
+  padding: .75rem;
+  background: var(--color-dark-06);
+  border: .0625rem solid var(--color-dark-15);
+  border-radius: var(--spacing-xs);
+}
+
+@media (min-width: 1024px) {
+  .popular-movie-container {
+    height: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .popular-movie-container p {
+    display: block;
+    text-align: center;
+  }
+
+  .popular-movie-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: var(--spacing-md);
+  }
+
+  .popular-movie-btn button {
+    width: fit-content;
+    margin-bottom: 0;
+  }
+}
