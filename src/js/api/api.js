@@ -64,3 +64,10 @@ export async function getMoviespages(pageCount = 1) {
 
   return allmovies;
 }
+
+export async function getPopularMovies(page) {
+  return request('/movie/popular', {
+    language: 'en-US',
+    page
+  })
+}
