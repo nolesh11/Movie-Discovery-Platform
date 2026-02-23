@@ -13,13 +13,13 @@
   position: relative;
 }
 
-.hero-logo {
+/* .hero-logo {
   margin-top: 3.125rem;
-}
+} */
 
 .hero-logo-btn {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 42%;
 }
 
@@ -394,7 +394,7 @@
   .hero-logo-btn {
     width: 4rem;
     height: 4.375rem;
-    top: 48%;
+    top: 40%;
   }
 
   .genre-header {
@@ -508,7 +508,6 @@
   .hero-logo-btn {
     width: 6.375rem;
     height: 6.8125rem;
-    top: 45%;
   }
 
   .hero-btn-icon {
