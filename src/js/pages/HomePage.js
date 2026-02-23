@@ -33,7 +33,7 @@ export async function HomePage() {
 
     posters.forEach(movies => {
       const img = document.createElement('img');
-      img.src = `https://image.tmdb.org/t/p/w500${movies.poster_path}`;
+      img.src = `https://image.tmdb.org/t/p/original${movies.poster_path}`;
       img.alt = 'Poster image';
       containerEl.append(img);
     });
