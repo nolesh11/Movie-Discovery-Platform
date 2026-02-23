@@ -11,7 +11,7 @@ body {
 }
 
 h2 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   margin-bottom: .625rem;
 }
 h3 {
