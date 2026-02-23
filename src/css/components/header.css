@@ -4,7 +4,7 @@ header {
   position: relative;
   align-self: start;
   padding: var(--spacing-xl) var(--spacing-sm) 0;
-
+  margin-bottom: var(--spacing-xl);
 }
 
 .header-nav {
