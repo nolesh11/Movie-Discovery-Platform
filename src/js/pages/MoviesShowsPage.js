@@ -1,7 +1,7 @@
 import { getPopularMovies } from "../api/api.js";
 
 export async function MoviesShowsPage() {
-  const popularMovies = await getPopularMovies(21);
+  const popularMovies = await getPopularMovies(39);
   const moviesData = popularMovies.results;
   console.log(moviesData);
 
