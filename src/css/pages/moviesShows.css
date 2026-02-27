@@ -98,6 +98,10 @@
   border-radius: .375rem;
 }
 
+.genres-list {
+  margin-bottom: 2rem;
+}
+
 .genre-list-btn {
   display: flex;
   justify-content: space-between;
@@ -156,6 +160,59 @@
   justify-content: space-between;
 }
 
+.rated-list-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.rated-list-card a {
+  background-color: var(--color-dark-10);
+  padding: var(--spacing-md);
+  border-radius: .625rem;
+  border: .0625rem solid var(--color-dark-15)
+}
+
+.rated-list-img {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-xs);
+  aspect-ratio: 1 / 1;  
+  overflow: hidden;               
+  place-items: stretch;     
+  place-content: stretch;
+  margin-bottom: var(--spacing-md);
+}
+
+.rated-list-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: center;   
+  border-radius: .625rem;
+}
+
+.rated-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rated-title-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.rated-title-cont span:first-child {
+  width: fit-content;
+  font-size: .75rem;
+  font-weight: 500;
+  background: var(--color-primary-45);
+  padding: var(--spacing-xs);
+  border-radius: var(--spacing-xs);
+}
+
 @media (min-width: 1024px) {
   .popular-movie-container {
     height: 100%;
@@ -210,5 +267,9 @@
 
   .genre-list-btn {
     align-self: center;
+  }
+
+  .rated-list-card {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
