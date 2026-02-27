@@ -19,7 +19,7 @@ export async function HomePage() {
   `;
 
   const genresData = await tmdbAPI.getGenreMovies();
-  const movies = await getMoviespages(5);
+  const movies = await getMoviespages(44);
 
   const genreSection = createGenreSection(genresData.genres, movies);
   container.append(genreSection);
