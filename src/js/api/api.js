@@ -65,9 +65,34 @@ export async function getMoviespages(pageCount = 1) {
   return allmovies;
 }
 
-export async function getPopularMovies(page) {
+export async function getPopularMovies(page = 10) {
   return request('/movie/popular', {
     language: 'en-US',
     page
   })
+}
+
+export async function getTopRatedMoviesPage(page = 1) {
+  return request('/movie/top_rated', {
+    language: 'en-US',
+    page
+  })
+}
+
+export async function getTopRatedMoviesPages(pageCount = 1) {
+  const pages = [];
+  for(let p = 1; p <= pageCount; p++) {
+    pages.push(p);
+  };
+
+  const responses = await Promise.all(
+    pages.map(p => getPopularMovies(p))
+  )
+
+  const allPages = [];
+
+  for(const r of responses) {
+    allPages.push(...r.results)
+  }
+  return allPages
 }
