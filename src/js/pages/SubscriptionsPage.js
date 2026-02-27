@@ -1,4 +1,4 @@
-export function DetailsPage() {
+export async function SubscriptionsPage() {
   const page = document.createElement('div');
   page.innerHTML = `
     <h1>Details Page</h1>

@@ -46,9 +46,9 @@ export async function getMoviesPage(page = 1) {
   })
 }
 
-export async function getMoviespages(pageCount = 1) {
+export async function getMoviespages(pageCount = 40) {
   const pages = [];
-  for(let p = 1; p <= pageCount; p++) {
+  for(let p = 40; p <= pageCount; p++) {
     pages.push(p);
   }
 
@@ -63,4 +63,36 @@ export async function getMoviespages(pageCount = 1) {
   }
 
   return allmovies;
+}
+
+export async function getPopularMovies(page = 10) {
+  return request('/movie/popular', {
+    language: 'en-US',
+    page
+  })
+}
+
+export async function getTopRatedMoviesPage(page = 10) {
+  return request('/movie/top_rated', {
+    language: 'en-US',
+    page
+  })
+}
+
+export async function getTopRatedMoviesPages(pageCount = 10) {
+  const pages = [];
+  for(let p = 10; p <= pageCount; p++) {
+    pages.push(p);
+  };
+
+  const responses = await Promise.all(
+    pages.map(p => getPopularMovies(p))
+  )
+
+  const allPages = [];
+
+  for(const r of responses) {
+    allPages.push(...r.results)
+  }
+  return allPages
 }

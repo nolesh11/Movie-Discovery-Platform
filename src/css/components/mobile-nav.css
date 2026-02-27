@@ -4,7 +4,6 @@
   width: 100vw;
   background-color: var(--color-dark-06);
   padding: var(--spacing-xs) var(--spacing-xxl) var(--spacing-lg);
-  margin-left: -1rem;
 
   display: flex;
   justify-content: space-between;
