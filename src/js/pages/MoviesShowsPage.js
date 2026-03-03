@@ -4,6 +4,7 @@ import {
   getMoviespages,
   getTopRatedMoviesPages,
   getTrandingMoviesOfDayPages,
+  getMovieById,
 } from "../api/api.js";
 
 export async function MoviesShowsPage() {
@@ -14,7 +15,8 @@ export async function MoviesShowsPage() {
   const moviesPages = await getMoviespages(44);
   const topRatedPages = await getTopRatedMoviesPages(24);
   const trandingMovies = await getTrandingMoviesOfDayPages(5);
-  console.log(trandingMovies.length);
+
+  console.log(trandingMovies);
 
   const moviesShows = document.createElement("div");
   moviesShows.id = "movies-shows-section";
@@ -264,21 +266,28 @@ export async function MoviesShowsPage() {
   const pageSize = 5;
   const step = 5;
 
-  function innerTrandingMovies() {
+  async function innerTrandingMovies() {
     const trandingContainer = moviesSection.querySelector(
       ".tranding-list-card",
     );
+
+    const visible = trandingMovies.slice(startIndex, startIndex + step);
+    const ids = visible.map((m) => m.id);
+    const details = await Promise.all(ids.map((id) => getMovieById(id)));    
 
     trandingContainer.innerHTML = trandingMovies
       .slice(startIndex, startIndex + step)
       .map(
         (m) => `
-        <a href='#/home'>
+        <a href='#/movie/${m.id}'>
           <div class='tranding-poster'>
             <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
           </div>
           <div class='tranding-header'>
-            <span>${m.title}</span>
+            <div>
+              <img src='./assets/icons/clockIcon.svg' />
+              <span class='movie-duration' data-movie-id='${m.id}'>-</span>
+            </div>  
             <div>
               <img src='./assets/icons/viewIcon.svg' />
               <span>${Math.ceil(m.popularity)}K</span>
@@ -288,6 +297,22 @@ export async function MoviesShowsPage() {
       `,
       )
       .join("");
+
+    function formatRuntime(mins) {
+      if (mins <= 0) return "-";
+      const hours = Math.floor(mins / 60);
+      const minutes = mins % 60;
+      return hours ? `${hours}h ${minutes}mins` : `${mins}`;
+    }
+
+    function hydrateRuntime() {
+      details.forEach((m) => {
+        const container = moviesSection.querySelector(`.movie-duration[data-movie-id="${m.id}"]`);
+        container.textContent = formatRuntime(m.runtime)
+      });
+    }
+
+    hydrateRuntime();
   }
 
   prevBtn.addEventListener("click", () => {
