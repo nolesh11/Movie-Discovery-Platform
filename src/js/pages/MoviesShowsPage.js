@@ -3,15 +3,18 @@ import {
   tmdbAPI,
   getMoviespages,
   getTopRatedMoviesPages,
+  getTrandingMoviesOfDayPages,
 } from "../api/api.js";
 
 export async function MoviesShowsPage() {
-  const popularMovies = await getPopularMovies(230);
+  const popularMovies = await getPopularMovies(2);
   const moviesData = popularMovies.results;
   const genres = await tmdbAPI.getGenreMovies();
   const genresData = genres.genres;
   const moviesPages = await getMoviespages(44);
-  const topRatedPages = await getTopRatedMoviesPages(14);
+  const topRatedPages = await getTopRatedMoviesPages(24);
+  const trandingMovies = await getTrandingMoviesOfDayPages(5);
+  console.log(trandingMovies.length);
 
   const moviesShows = document.createElement("div");
   moviesShows.id = "movies-shows-section";
@@ -100,6 +103,16 @@ export async function MoviesShowsPage() {
         </div>
       </div>
       <div class='rated-list-card'></div>
+    </div>
+    <div class='tranding-list'>
+      <div class='genre-heading'>
+        <h2>Trending Now</h2>
+        <div class='genre-list-btn'>
+          <button class='tranding-prev'><img src='./assets/icons/prevArrow.svg' /></button>
+          <button class='tranding-next'><img src='./assets/icons/nextArrow.svg' /></button>
+        </div>
+      </div>
+      <div class='tranding-list-card'></div>
     </div>
   `;
 
@@ -227,7 +240,6 @@ export async function MoviesShowsPage() {
       topNextBtn.disabled = ratedStartIndex === maxStart;
     }
 
-    
     topPrevBtn.addEventListener("click", () => {
       ratedStartIndex = Math.max(0, ratedStartIndex - ratedStep);
       render();
@@ -244,6 +256,52 @@ export async function MoviesShowsPage() {
   }
   innerGenres();
   innerTopRatedMovies();
+
+  const prevBtn = moviesSection.querySelector(".tranding-prev");
+  const nextBtn = moviesSection.querySelector(".tranding-next");
+
+  let startIndex = 0;
+  const pageSize = 5;
+  const step = 5;
+
+  function innerTrandingMovies() {
+    const trandingContainer = moviesSection.querySelector(
+      ".tranding-list-card",
+    );
+
+    trandingContainer.innerHTML = trandingMovies
+      .slice(startIndex, startIndex + step)
+      .map(
+        (m) => `
+        <a href='#/home'>
+          <div class='tranding-poster'>
+            <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
+          </div>
+          <div class='tranding-header'>
+            <span>${m.title}</span>
+            <div>
+              <img src='./assets/icons/viewIcon.svg' />
+              <span>${Math.ceil(m.popularity)}K</span>
+            </div>
+          </div>
+        </a>
+      `,
+      )
+      .join("");
+  }
+
+  prevBtn.addEventListener("click", () => {
+    startIndex = Math.max(0, startIndex - step);
+    innerTrandingMovies();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const maxStart = Math.max(0, trandingMovies.length - pageSize);
+    startIndex = Math.min(maxStart, startIndex + step);
+    innerTrandingMovies();
+  });
+
+  innerTrandingMovies();
 
   moviesShows.append(moviesSection);
 
