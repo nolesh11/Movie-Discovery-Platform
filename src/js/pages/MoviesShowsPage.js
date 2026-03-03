@@ -7,6 +7,8 @@ import {
   getMovieById,
 } from "../api/api.js";
 
+import { pagination } from "../components/Pagination.js";
+
 export async function MoviesShowsPage() {
   const popularMovies = await getPopularMovies(2);
   const moviesData = popularMovies.results;
@@ -15,8 +17,6 @@ export async function MoviesShowsPage() {
   const moviesPages = await getMoviespages(44);
   const topRatedPages = await getTopRatedMoviesPages(24);
   const trandingMovies = await getTrandingMoviesOfDayPages(5);
-
-  console.log(trandingMovies);
 
   const moviesShows = document.createElement("div");
   moviesShows.id = "movies-shows-section";
@@ -133,15 +133,15 @@ export async function MoviesShowsPage() {
 
   function innerGenres() {
     const genresContainer = moviesSection.querySelector(".genre-list-card");
-    const genrePrevBtn = moviesSection.querySelector(".genre-prev");
-    const genreNextBtn = moviesSection.querySelector(".genre-next");
-    let genreStartIndex = 0;
-    const genrePageSize = 5;
-    const genreStep = 5;
+    const prevBtn = moviesSection.querySelector(".genre-prev");
+    const nextBtn = moviesSection.querySelector(".genre-next");
+    let startIndex = 0;
+    const pageSize = 5;
+    const step = 5;
 
     function renderGenres() {
       genresContainer.innerHTML = genresData
-        .slice(genreStartIndex, genreStartIndex + genrePageSize)
+        .slice(startIndex, startIndex + pageSize)
         .map(
           (g) => `
         <a href='#/home'>
@@ -170,21 +170,20 @@ export async function MoviesShowsPage() {
     function render() {
       renderGenres();
       hydratePosters();
-
-      const maxStart = Math.max(0, genresData.length - genreStep);
-      genrePrevBtn.disabled = genreStartIndex === 0;
-      genreNextBtn.disabled = genreStartIndex === maxStart;
     }
 
-    genrePrevBtn.addEventListener("click", () => {
-      genreStartIndex = Math.max(0, genreStartIndex - genreStep);
-      render();
-    });
-
-    genreNextBtn.addEventListener("click", () => {
-      const maxStart = Math.max(0, genresData.length - genrePageSize);
-      genreStartIndex = Math.min(maxStart, genreStartIndex + genreStep);
-      render();
+    pagination({
+      prevBtn,
+      nextBtn,
+      startIndex,
+      pageSize,
+      step,
+      onChange: (newStart) => {
+        startIndex = newStart;
+        render();
+      },
+      getTotal: () => genresData.length,
+      getStart: () => startIndex,
     });
 
     render();
@@ -195,15 +194,15 @@ export async function MoviesShowsPage() {
   function innerTopRatedMovies() {
     const ratedMoviesContainer =
       moviesSection.querySelector(".rated-list-card");
-    const topPrevBtn = moviesSection.querySelector(".rated-prev");
-    const topNextBtn = moviesSection.querySelector(".rated-next");
-    let ratedStartIndex = 0;
-    const ratedPageSize = 4;
-    const ratedStep = 4;
+    const prevBtn = moviesSection.querySelector(".rated-prev");
+    const nextBtn = moviesSection.querySelector(".rated-next");
+    let startIndex = 0;
+    const pageSize = 4;
+    const step = 4;
 
     function renderRatedMovies() {
       ratedMoviesContainer.innerHTML = genresData
-        .slice(ratedStartIndex, ratedStartIndex + ratedPageSize)
+        .slice(startIndex, startIndex + pageSize)
         .map(
           (r) => `
           <a href='#/home'>
@@ -236,21 +235,20 @@ export async function MoviesShowsPage() {
     function render() {
       renderRatedMovies();
       hydratePosters();
-
-      const maxStart = Math.max(0, genresData.length - ratedPageSize);
-      topPrevBtn.disabled = ratedStartIndex === 0;
-      topNextBtn.disabled = ratedStartIndex === maxStart;
     }
 
-    topPrevBtn.addEventListener("click", () => {
-      ratedStartIndex = Math.max(0, ratedStartIndex - ratedStep);
-      render();
-    });
-
-    topNextBtn.addEventListener("click", () => {
-      const maxStart = Math.max(0, genresData.length - ratedPageSize);
-      ratedStartIndex = Math.min(maxStart, ratedStartIndex + ratedStep);
-      render();
+    pagination({
+      prevBtn,
+      nextBtn,
+      startIndex,
+      pageSize,
+      step,
+      onChange: (newStart) => {
+        startIndex = newStart;
+        render();
+      },
+      getTotal: () => genresData.length,
+      getStart: () => startIndex,
     });
 
     render();
@@ -258,9 +256,6 @@ export async function MoviesShowsPage() {
   }
   innerGenres();
   innerTopRatedMovies();
-
-  const prevBtn = moviesSection.querySelector(".tranding-prev");
-  const nextBtn = moviesSection.querySelector(".tranding-next");
 
   let startIndex = 0;
   const pageSize = 5;
@@ -270,10 +265,12 @@ export async function MoviesShowsPage() {
     const trandingContainer = moviesSection.querySelector(
       ".tranding-list-card",
     );
+    const prevBtn = moviesSection.querySelector(".tranding-prev");
+    const nextBtn = moviesSection.querySelector(".tranding-next");
 
     const visible = trandingMovies.slice(startIndex, startIndex + step);
     const ids = visible.map((m) => m.id);
-    const details = await Promise.all(ids.map((id) => getMovieById(id)));    
+    const details = await Promise.all(ids.map((id) => getMovieById(id)));
 
     trandingContainer.innerHTML = trandingMovies
       .slice(startIndex, startIndex + step)
@@ -307,24 +304,27 @@ export async function MoviesShowsPage() {
 
     function hydrateRuntime() {
       details.forEach((m) => {
-        const container = moviesSection.querySelector(`.movie-duration[data-movie-id="${m.id}"]`);
-        container.textContent = formatRuntime(m.runtime)
+        const container = moviesSection.querySelector(
+          `.movie-duration[data-movie-id="${m.id}"]`,
+        );
+        container.textContent = formatRuntime(m.runtime);
       });
     }
 
     hydrateRuntime();
+    pagination({
+      prevBtn,
+      nextBtn,
+      pageSize,
+      step,
+      onChange: (newStart) => {
+        startIndex = newStart;
+        innerTrandingMovies();
+      },
+      getTotal: () => trandingMovies.length,
+      getStart: () => startIndex,
+    });
   }
-
-  prevBtn.addEventListener("click", () => {
-    startIndex = Math.max(0, startIndex - step);
-    innerTrandingMovies();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    const maxStart = Math.max(0, trandingMovies.length - pageSize);
-    startIndex = Math.min(maxStart, startIndex + step);
-    innerTrandingMovies();
-  });
 
   innerTrandingMovies();
 
