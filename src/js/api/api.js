@@ -79,14 +79,39 @@ export async function getTopRatedMoviesPage(page = 10) {
   })
 }
 
-export async function getTopRatedMoviesPages(pageCount = 10) {
+export async function getTopRatedMoviesPages(pageCount = 20) {
   const pages = [];
-  for(let p = 10; p <= pageCount; p++) {
+  for(let p = 20; p <= pageCount; p++) {
     pages.push(p);
   };
 
   const responses = await Promise.all(
     pages.map(p => getPopularMovies(p))
+  )
+
+  const allPages = [];
+
+  for(const r of responses) {
+    allPages.push(...r.results)
+  }
+  return allPages
+}
+
+export async function getTrandingMoviesOfDay(page) {
+  return request('/trending/movie/day', {
+    language: 'en-US',
+    page
+  })
+}
+
+export async function getTrandingMoviesOfDayPages(pageCount = 1) {
+  const pages = [];
+  for(let p = 1; p <= pageCount; p++) {
+    pages.push(p);
+  };
+
+  const responses = await Promise.all(
+    pages.map(p => getTrandingMoviesOfDay(p))
   )
 
   const allPages = [];
