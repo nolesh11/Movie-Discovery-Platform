@@ -1,0 +1,36 @@
+.movie-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-sm);
+  margin-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  position: relative;
+}
+
+.movie-container > * {
+  z-index: 1;
+}
+
+.movie-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.movie-container h2 p {
+  text-align: center;
+}
