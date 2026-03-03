@@ -121,3 +121,9 @@ export async function getTrandingMoviesOfDayPages(pageCount = 1) {
   }
   return allPages
 }
+
+export async function getMovieById(movieId) {
+  return request(`/movie/${movieId}`, {
+    language: 'en-US'
+  })
+}
