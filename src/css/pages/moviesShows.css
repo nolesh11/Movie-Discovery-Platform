@@ -254,6 +254,10 @@
   display: flex;
   gap: .3125rem;
   color: var(--color-gray-60);
+  background: var(--color-dark-08);
+  padding: .25rem var(--spacing-xs) .25rem .25rem;
+  border-radius: 3.1875rem;
+  border: .0625rem solid var(--color-dark-15);
 }
 
 .tranding-header div img {
