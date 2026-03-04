@@ -13,18 +13,26 @@ export function pagination({
     );
   }
 
-  const maxStart = Math.max(0, getTotal() - pageSize);
-  prevBtn.disabled = getStart() === 0;
-  nextBtn.disabled = getStart() === maxStart;
+  function onPrev() {
+    prevBtn.addEventListener("click", () => {
+      const newStart = Math.max(0, getStart() - step);
+      onChange(newStart);
+    });
+  }
 
-  prevBtn.addEventListener("click", () => {
-    const newStart = Math.max(0, getStart() - step);
-    onChange(newStart);
-  });
+  function onNext() {
+    nextBtn.addEventListener("click", () => {
+      const maxStart = Math.max(0, getTotal() - pageSize);
+      const newStart = Math.min(maxStart, getStart() + step);
+      onChange(newStart);
+    });
+  }
 
-  nextBtn.addEventListener("click", () => {
-    const maxStart = Math.max(0, getTotal() - pageSize);
-    const newStart = Math.min(maxStart, getStart() + step);
-    onChange(newStart);
-  });
+  onPrev();
+  onNext()
+
+  return () => {
+    prevBtn.removeEventlistener("click", onPrev);
+    nextBtn.removeEventlistener("click", onNext);
+  };
 }
