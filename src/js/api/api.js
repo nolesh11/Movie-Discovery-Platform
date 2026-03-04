@@ -170,3 +170,10 @@ export async function getMovieById(movieId) {
     language: "en-US",
   });
 }
+
+export async function getUpcomingMovies() {
+  return request('/movie/upcoming', {
+    language: 'en-US',
+    page: 2,
+  })
+}
