@@ -5,6 +5,7 @@ header {
   align-self: start;
   padding: var(--spacing-xl) var(--spacing-sm) 0;
   margin-bottom: var(--spacing-xl);
+  z-index: 100;
 }
 
 .header-nav {
