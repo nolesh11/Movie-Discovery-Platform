@@ -5,6 +5,7 @@ import {
   getTopRatedMoviesPages,
   getTrandingMoviesOfDayPages,
   getMovieById,
+  getUpcomingMovies,
 } from "../api/api.js";
 
 import { pagination } from "../components/Pagination.js";
@@ -17,6 +18,8 @@ export async function MoviesShowsPage() {
   const moviesPages = await getMoviespages(44);
   const topRatedPages = await getTopRatedMoviesPages(24);
   const trandingMovies = await getTrandingMoviesOfDayPages(5);
+  const upcomingMovies = await getUpcomingMovies();
+  const upcomingMoviesData = upcomingMovies.results;
 
   const moviesShows = document.createElement("div");
   moviesShows.id = "movies-shows-section";
@@ -115,6 +118,16 @@ export async function MoviesShowsPage() {
         </div>
       </div>
       <div class='tranding-list-card'></div>
+    </div>
+    <div class='upcoming-list'>
+      <div class='genre-heading'>
+        <h2>New Releases</h2>
+        <div class='genre-list-btn'>
+          <button class='upcoming-prev'><img src='./assets/icons/prevArrow.svg' /></button>
+          <button class='upcoming-next'><img src='./assets/icons/nextArrow.svg' /></button>
+        </div>
+      </div>
+      <div class='upcoming-list-card'></div>
     </div>
   `;
 
@@ -254,19 +267,17 @@ export async function MoviesShowsPage() {
     render();
     return ratedMoviesContainer;
   }
-  innerGenres();
-  innerTopRatedMovies();
 
   let startIndex = 0;
   const pageSize = 5;
   const step = 5;
+  const prevBtn = moviesSection.querySelector(".tranding-prev");
+  const nextBtn = moviesSection.querySelector(".tranding-next");
 
   async function innerTrandingMovies() {
     const trandingContainer = moviesSection.querySelector(
       ".tranding-list-card",
     );
-    const prevBtn = moviesSection.querySelector(".tranding-prev");
-    const nextBtn = moviesSection.querySelector(".tranding-next");
 
     const visible = trandingMovies.slice(startIndex, startIndex + step);
     const ids = visible.map((m) => m.id);
@@ -283,7 +294,7 @@ export async function MoviesShowsPage() {
           <div class='tranding-header'>
             <div>
               <img src='./assets/icons/clockIcon.svg' />
-              <span class='movie-duration' data-movie-id='${m.id}'>-</span>
+              <span class='movie-duration' data-movie-id="${m.id}">-</span>
             </div>  
             <div>
               <img src='./assets/icons/viewIcon.svg' />
@@ -304,29 +315,113 @@ export async function MoviesShowsPage() {
 
     function hydrateRuntime() {
       details.forEach((m) => {
-        const container = moviesSection.querySelector(
+        const container = trandingContainer.querySelector(
           `.movie-duration[data-movie-id="${m.id}"]`,
         );
+
+        if (!container) return;
+
         container.textContent = formatRuntime(m.runtime);
       });
     }
 
     hydrateRuntime();
+
+    return trandingContainer;
+  }
+
+  pagination({
+    prevBtn,
+    nextBtn,
+    pageSize,
+    step,
+    getTotal: () => trandingMovies.length,
+    getStart: () => startIndex,
+    onChange: (newStart) => {
+      startIndex = newStart;
+      innerTrandingMovies();
+    },
+  });
+
+  function innerNewReleases() {
+    const newReleasesContainer = moviesSection.querySelector(
+      ".upcoming-list-card",
+    );
+    const prevBtn = moviesSection.querySelector(".upcoming-prev");
+    const nextBtn = moviesSection.querySelector(".upcoming-next");
+    let startIndex = 0;
+    const pageSize = 5;
+    const step = 5;
+
+    function renderUpcoming() {
+      newReleasesContainer.innerHTML = upcomingMoviesData
+        .slice(startIndex, startIndex + step)
+        .map(
+          (m) => `
+            <a href='#/movie/${m.id}'>
+              <div class='upcoming-poster'>
+                <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
+              </div>
+              <div class='upcoming-title'>
+                <span>Released at</span>
+                <span class='upcoming-date' data-date-id="${m.id}">-</span>
+              </div>
+            </a>
+        `,
+        )
+        .join("");
+    }
+
+    function hedrateDate() {
+      upcomingMoviesData.forEach((d) => {
+        const dateContainer = newReleasesContainer.querySelector(
+          `.upcoming-date[data-date-id="${d.id}"]`,
+        );
+        const releaseDate = d.release_date;
+        const date = new Date(releaseDate);
+
+        const formatedDay = date.toLocaleDateString("en-US", {
+          day: "numeric",
+        });
+        const formatedMonth = date.toLocaleDateString("en-US", {
+          month: "short",
+        });
+        const formatedYear = date.toLocaleDateString("en-US", {
+          year: "numeric",
+        });
+
+        if (!dateContainer) return;
+
+        dateContainer.textContent = `\u00A0${formatedDay} ${formatedMonth} ${formatedYear}`;
+      });
+    }
+
+    function render() {
+      renderUpcoming();
+      hedrateDate();
+    }
+
     pagination({
       prevBtn,
       nextBtn,
       pageSize,
       step,
+      getTotal: () => upcomingMoviesData.length,
+      getStart: () => startIndex,
       onChange: (newStart) => {
         startIndex = newStart;
-        innerTrandingMovies();
+        render();
       },
-      getTotal: () => trandingMovies.length,
-      getStart: () => startIndex,
     });
+
+    render();
+    return newReleasesContainer;
   }
 
+  innerGenres();
+  innerTopRatedMovies();
   innerTrandingMovies();
+  innerNewReleases();
 
   moviesShows.append(moviesSection);
 
