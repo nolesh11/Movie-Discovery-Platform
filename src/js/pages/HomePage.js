@@ -7,7 +7,7 @@ export async function HomePage() {
     <section class='hero'>
       <div class='hero-logo-container'>
         <img src='./assets/icons/heroLogo.svg' class='hero-logo' alt='Hero Logo' />
-        <img src='./assets/icons/heroLogobtn.svg' alt='Hero Logo Button' class='hero-logo-btn' />
+        <img src='./assets/icons/heroLogoBtn.svg' alt='Hero Logo Button' class='hero-logo-btn' />
       </div>
       <h1>The Best Streaming Experience</h1>
       <p>StreamVibe is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.</p>
@@ -142,16 +142,16 @@ export async function HomePage() {
           <div class='card-img'>
             <img src='./assets/icons/cardTablet.svg' />
           </div>
-          <h3>Smartphones</h3>
+          <h3>Tablet</h3>
         </div>
         <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
       <div class='device-compatibility-info___card'>
         <div class='card-name'>
           <div class='card-img'>
-            <img src='./assets/icons/cardTv.svg' />
+            <img src='./assets/icons/cardtv.svg' />
           </div>
-          <h3>Smartphones</h3>
+          <h3>Smart TV</h3>
         </div>
         <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
@@ -160,7 +160,7 @@ export async function HomePage() {
           <div class='card-img'>
             <img src='./assets/icons/cardLaptop.svg' />
           </div>
-          <h3>Smartphones</h3>
+          <h3>Laptops</h3>
         </div>
         <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
@@ -169,7 +169,7 @@ export async function HomePage() {
           <div class='card-img'>
             <img src='./assets/icons/cardGaming.svg' />
           </div>
-          <h3>Smartphones</h3>
+          <h3>Gaming Consoles</h3>
         </div>
         <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
@@ -178,7 +178,7 @@ export async function HomePage() {
           <div class='card-img'>
             <img src='./assets/icons/cardVr.svg' />
           </div>
-          <h3>Smartphones</h3>
+          <h3>VR Headsets</h3>
         </div>
         <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
