@@ -1,22 +1,35 @@
-import { tmdbAPI, getMoviespages } from '../api/api.js';
+import { tmdbAPI, getMoviespages, getMoviesPage } from '../api/api.js';
 
 export async function HomePage() {
+  const moviesData = await getMoviesPage(3);
+  const moviesDataArray = moviesData.results;
+  console.log(moviesDataArray);
+  
   const container = document.createElement('div');
   container.id = 'main-page';
   container.innerHTML = `
     <section class='hero'>
-      <div class='hero-logo-container'>
-        <img src='./assets/icons/heroLogo.svg' class='hero-logo' alt='Hero Logo' />
-        <img src='./assets/icons/heroLogoBtn.svg' alt='Hero Logo Button' class='hero-logo-btn' />
-      </div>
-      <h1>The Best Streaming Experience</h1>
-      <p>StreamVibe is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.</p>
-      <a href="#/search" class='hero-btn'>
-        <img src='./assets/icons/HeroIcon.svg' alt='Play button' class='hero-btn-icon' />
-        Start Watching
-      </a>
+      <div class='hero-info'>
+        <div class='hero-logo-container'>
+          <img src='./assets/icons/heroLogo.svg' class='hero-logo' alt='Hero Logo' />
+          <img src='./assets/icons/heroLogoBtn.svg' alt='Hero Logo Button' class='hero-logo-btn' />
+        </div>
+        <h1>The Best Streaming Experience</h1>
+        <p>StreamVibe is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.</p>
+        <a href="#/search" class='hero-btn'>
+          <img src='./assets/icons/HeroIcon.svg' alt='Play button' class='hero-btn-icon' />
+          Start Watching
+        </a>
+       </div>
+       <div class='hero-background'></div> 
      </section>
   `;
+
+  const heroBackgroundCont = container.querySelector('.hero-background');
+  heroBackgroundCont.innerHTML = moviesDataArray.slice(0, 18).map(m => `
+    <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
+  `).join('')
+  
 
   const genresData = await tmdbAPI.getGenreMovies();
   const movies = await getMoviespages(44);
