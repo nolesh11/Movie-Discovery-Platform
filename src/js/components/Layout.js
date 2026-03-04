@@ -1,6 +1,6 @@
 import { Header } from './Header.js';
 import { MobileNav } from './MobileNav.js';
-import { Footer } from './footer.js';
+import { Footer } from './Footer.js';
 
 export function Layout() {
   const root = document.createElement('div');
