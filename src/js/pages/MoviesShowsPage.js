@@ -10,7 +10,7 @@ import {
 } from "../api/api.js";
 import { pagination } from "../components/Pagination.js";
 import { formatDate } from "../components/FormatDate.js";
-import { hydrateRuntime } from "../components/hydrateRuntime.js";
+import { hydrateRuntime } from "../components/HydrateRuntime.js";
 import { hydratePosters } from "../components/HydratePosters.js";
 
 export async function MoviesShowsPage() {
