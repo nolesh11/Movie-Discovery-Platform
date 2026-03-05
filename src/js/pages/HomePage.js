@@ -1,4 +1,5 @@
 import { tmdbAPI, getMoviespages, getMoviesPage } from '../api/api.js';
+import { renderPosters } from '../components/RenderPosters.js';
 
 export async function HomePage() {
   const moviesData = await getMoviesPage(3);
@@ -36,21 +37,6 @@ export async function HomePage() {
 
   const genreSection = createGenreSection(genresData.genres, movies);
   container.append(genreSection);
-
-  function renderPosters(containerEl, movies, limit) {
-    containerEl.innerHTML = '';
-
-    const posters = movies 
-      .filter(e => e.poster_path)
-      .slice(0, limit);
-
-    posters.forEach(movies => {
-      const img = document.createElement('img');
-      img.src = `https://image.tmdb.org/t/p/original${movies.poster_path}`;
-      img.alt = 'Poster image';
-      containerEl.append(img);
-    });
-  };
 
   function createGenreSection(genres, movies) {
     const genreSection = document.createElement('section');
