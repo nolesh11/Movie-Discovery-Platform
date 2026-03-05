@@ -117,7 +117,7 @@ export async function getPopularMovies(page = 10) {
   });
 }
 
-export async function getTopRatedMoviesPage(page = 10) {
+export async function getTopRatedMoviesPage(page) {
   return request("/movie/top_rated", {
     language: "en-US",
     page,
