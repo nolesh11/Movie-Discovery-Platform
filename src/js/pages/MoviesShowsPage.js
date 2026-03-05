@@ -6,9 +6,12 @@ import {
   getTrandingMoviesOfDayPages,
   getMovieById,
   getUpcomingMovies,
+  getTopRatedMoviesPage,
 } from "../api/api.js";
-
 import { pagination } from "../components/Pagination.js";
+import { formatDate } from "../components/FormatDate.js";
+import { hydrateRuntime } from "../components/hydrateRuntime.js";
+import { hydratePosters } from "../components/HydratePosters.js";
 
 export async function MoviesShowsPage() {
   const popularMovies = await getPopularMovies(2);
@@ -20,6 +23,10 @@ export async function MoviesShowsPage() {
   const trandingMovies = await getTrandingMoviesOfDayPages(5);
   const upcomingMovies = await getUpcomingMovies();
   const upcomingMoviesData = upcomingMovies.results;
+  const mustWatchMovies = await getTopRatedMoviesPage(5);
+  const mustWatchMoviesData = mustWatchMovies.results;
+  console.log(mustWatchMoviesData);
+  
 
   const moviesShows = document.createElement("div");
   moviesShows.id = "movies-shows-section";
@@ -129,20 +136,17 @@ export async function MoviesShowsPage() {
       </div>
       <div class='upcoming-list-card'></div>
     </div>
+    <div class='must-watch-list'>
+      <div class='genre-heading'>
+        <h2>Must - Watch Movies</h2>
+        <div class='genre-list-btn'>
+          <button class='must-watch-prev'><img src='./assets/icons/prevArrow.svg' /></button>
+          <button class='must-watch-next'><img src='./assets/icons/nextArrow.svg' /></button>
+        </div>
+      </div>
+      <div class='must-watch-list-card'></div>
+    </div>
   `;
-
-  function renderPosters(cont, movies, limit) {
-    cont.innerHTML = "";
-
-    const posters = movies.filter((m) => m.poster_path).slice(0, limit);
-
-    posters.forEach((movies) => {
-      const img = document.createElement("img");
-      img.src = `https://image.tmdb.org/t/p/original${movies.poster_path}`;
-      img.alt = "Poster";
-      cont.append(img);
-    });
-  }
 
   function innerGenres() {
     const genresContainer = moviesSection.querySelector(".genre-list-card");
@@ -152,37 +156,28 @@ export async function MoviesShowsPage() {
     const pageSize = 5;
     const step = 5;
 
-    function renderGenres() {
-      genresContainer.innerHTML = genresData
-        .slice(startIndex, startIndex + pageSize)
+    function renderGenres(visible) {
+      genresContainer.innerHTML = visible
         .map(
           (g) => `
-        <a href='#/home'>
-          <div class='genre-list-img' data-genre-id='${g.id}'></div>
-          <div class='genre-title'>
-            <span>${g.name}</span> 
-            <img src='./assets/icons/arrowRight.svg' />
-          </div>
-        </a>
-      `,
+            <a href='#/home'>
+              <div class='genre-list-img' data-genre-id='${g.id}'></div>
+              <div class='genre-title'>
+                <span>${g.name}</span> 
+                <img src='./assets/icons/arrowRight.svg' />
+              </div>
+            </a>
+          `,
         )
         .join("");
     }
 
-    function hydratePosters() {
-      const posterContainer = moviesSection.querySelectorAll(".genre-list-img");
-      posterContainer.forEach((cont) => {
-        const genreId = Number(cont.dataset.genreId);
-        const moviesForgenre = moviesPages.filter(
-          (m) => Array.isArray(m.genre_ids) && m.genre_ids.includes(genreId),
-        );
-        renderPosters(cont, moviesForgenre, 4);
-      });
-    }
-
     function render() {
-      renderGenres();
-      hydratePosters();
+      const visible = genresData.slice(startIndex, startIndex + pageSize);
+      renderGenres(visible);
+      hydratePosters(genresContainer, moviesPages, {
+        targetClass: "genre-list-img",
+      });
     }
 
     pagination({
@@ -233,21 +228,11 @@ export async function MoviesShowsPage() {
         .join("");
     }
 
-    function hydratePosters() {
-      const container = moviesSection.querySelectorAll(".rated-list-img");
-      container.forEach((cont) => {
-        const genreId = Number(cont.dataset.genreId);
-        const topRated = topRatedPages.filter(
-          (m) => Array.isArray(m.genre_ids) && m.genre_ids.includes(genreId),
-        );
-
-        renderPosters(cont, topRated, 4);
-      });
-    }
-
     function render() {
       renderRatedMovies();
-      hydratePosters();
+      hydratePosters(ratedMoviesContainer, topRatedPages, {
+        targetClass: "rated-list-img",
+      });
     }
 
     pagination({
@@ -268,80 +253,68 @@ export async function MoviesShowsPage() {
     return ratedMoviesContainer;
   }
 
-  let startIndex = 0;
-  const pageSize = 5;
-  const step = 5;
-  const prevBtn = moviesSection.querySelector(".tranding-prev");
-  const nextBtn = moviesSection.querySelector(".tranding-next");
-
   async function innerTrandingMovies() {
     const trandingContainer = moviesSection.querySelector(
       ".tranding-list-card",
     );
+    let startIndex = 0;
+    const pageSize = 5;
+    const step = 5;
+    const prevBtn = moviesSection.querySelector(".tranding-prev");
+    const nextBtn = moviesSection.querySelector(".tranding-next");
 
-    const visible = trandingMovies.slice(startIndex, startIndex + step);
-    const ids = visible.map((m) => m.id);
-    const details = await Promise.all(ids.map((id) => getMovieById(id)));
-
-    trandingContainer.innerHTML = trandingMovies
-      .slice(startIndex, startIndex + step)
-      .map(
-        (m) => `
-        <a href='#/movie/${m.id}'>
-          <div class='tranding-poster'>
-            <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
-          </div>
-          <div class='tranding-header'>
-            <div>
-              <img src='./assets/icons/clockIcon.svg' />
-              <span class='movie-duration' data-movie-id="${m.id}">-</span>
-            </div>  
-            <div>
-              <img src='./assets/icons/viewIcon.svg' />
-              <span>${Math.ceil(m.popularity)}K</span>
-            </div>
-          </div>
-        </a>
-      `,
-      )
-      .join("");
-
-    function formatRuntime(mins) {
-      if (mins <= 0) return "-";
-      const hours = Math.floor(mins / 60);
-      const minutes = mins % 60;
-      return hours ? `${hours}h ${minutes}mins` : `${mins}`;
+    function renderTranding(visible) {
+      trandingContainer.innerHTML = visible
+        .map(
+          (m) => `
+            <a href='#/movie/${m.id}'>
+              <div class='tranding-poster'>
+                <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
+              </div>
+              <div class='tranding-header'>
+                <div>
+                  <img src='./assets/icons/clockIcon.svg' />
+                  <span class='movie-duration' data-movie-id="${m.id}">-</span>
+                </div>  
+                <div>
+                  <img src='./assets/icons/viewIcon.svg' />
+                  <span>${Math.ceil(m.popularity)}K</span>
+                </div>
+              </div>
+            </a>
+          `,
+        )
+        .join("");
     }
 
-    function hydrateRuntime() {
-      details.forEach((m) => {
-        const container = trandingContainer.querySelector(
-          `.movie-duration[data-movie-id="${m.id}"]`,
-        );
+    async function render() {
+      const visible = trandingMovies.slice(startIndex, startIndex + step);
+      renderTranding(visible);
 
-        if (!container) return;
-
-        container.textContent = formatRuntime(m.runtime);
+      const details = await Promise.all(visible.map((m) => getMovieById(m.id)));
+      hydrateRuntime(details, trandingContainer, {
+        targetClass: "movie-duration",
+        dataAttr: "movie-id",
       });
     }
 
-    hydrateRuntime();
+    pagination({
+      prevBtn,
+      nextBtn,
+      pageSize,
+      step,
+      getTotal: () => trandingMovies.length,
+      getStart: () => startIndex,
+      onChange: (newStart) => {
+        startIndex = newStart;
+        render();
+      },
+    });
+
+    render();
 
     return trandingContainer;
   }
-
-  pagination({
-    prevBtn,
-    nextBtn,
-    pageSize,
-    step,
-    getTotal: () => trandingMovies.length,
-    getStart: () => startIndex,
-    onChange: (newStart) => {
-      startIndex = newStart;
-      innerTrandingMovies();
-    },
-  });
 
   function innerNewReleases() {
     const newReleasesContainer = moviesSection.querySelector(
@@ -353,9 +326,8 @@ export async function MoviesShowsPage() {
     const pageSize = 5;
     const step = 5;
 
-    function renderUpcoming() {
-      newReleasesContainer.innerHTML = upcomingMoviesData
-        .slice(startIndex, startIndex + step)
+    function renderUpcoming(visiable) {
+      newReleasesContainer.innerHTML = visiable
         .map(
           (m) => `
             <a href='#/movie/${m.id}'>
@@ -372,33 +344,13 @@ export async function MoviesShowsPage() {
         .join("");
     }
 
-    function hedrateDate() {
-      upcomingMoviesData.forEach((d) => {
-        const dateContainer = newReleasesContainer.querySelector(
-          `.upcoming-date[data-date-id="${d.id}"]`,
-        );
-        const releaseDate = d.release_date;
-        const date = new Date(releaseDate);
-
-        const formatedDay = date.toLocaleDateString("en-US", {
-          day: "numeric",
-        });
-        const formatedMonth = date.toLocaleDateString("en-US", {
-          month: "short",
-        });
-        const formatedYear = date.toLocaleDateString("en-US", {
-          year: "numeric",
-        });
-
-        if (!dateContainer) return;
-
-        dateContainer.textContent = `\u00A0${formatedDay} ${formatedMonth} ${formatedYear}`;
-      });
-    }
-
     function render() {
-      renderUpcoming();
-      hedrateDate();
+      const visiable = upcomingMoviesData.slice(startIndex, startIndex + step);
+      renderUpcoming(visiable);
+      formatDate(visiable, newReleasesContainer, {
+        targetClass: "upcoming-date",
+        dataAttr: "date-id",
+      });
     }
 
     pagination({
@@ -418,10 +370,78 @@ export async function MoviesShowsPage() {
     return newReleasesContainer;
   }
 
+  async function innerMustWatchMovies() {
+    const movieContainer = moviesSection.querySelector(".must-watch-list-card");
+    const prevBtn = moviesSection.querySelector(".must-watch-prev");
+    const nextBtn = moviesSection.querySelector(".must-watch-next");
+
+    let startIndex = 0;
+    const pageSize = 4;
+    const step = 4;
+
+    function rendermustWatchMovies(visible) {
+      function fillRatingStars(rating) {
+        const stars = Math.round(rating) / 2;
+        return (stars * 100) / 5;
+      }
+      movieContainer.innerHTML = visible
+        .map((m) => {
+          const answer = fillRatingStars(m.vote_average);
+
+          return `
+            <a href='#/movie/${m.id}'>
+              <div class='must-watch-poster'>
+                <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
+              </div>
+              <div class='must-watch-title'>
+                <div class='movie-runtime'>
+                  <img src='./assets/icons/clockIcon.svg' />
+                  <span class='must-watch-date' data-must-id="${m.id}">-</span>
+                </div>
+                <div class='movie-rating'>
+                  <div class='stars-rating' style="--fill: ${answer}%"></div>
+                  <span>${Math.round(m.vote_average / 2 * 10) / 10}</span>
+                </div>
+              </div>
+            </a>
+          `;
+        })
+        .join("");
+    }
+
+    async function render() {
+      const visible = mustWatchMoviesData.slice(startIndex, startIndex + step);
+      rendermustWatchMovies(visible);
+      const details = await Promise.all(visible.map((m) => getMovieById(m.id)));
+
+      hydrateRuntime(details, movieContainer, {
+        targetClass: "must-watch-date",
+        dataAttr: "must-id",
+      });
+    }
+
+    pagination({
+      prevBtn,
+      nextBtn,
+      pageSize,
+      step,
+      getTotal: () => mustWatchMoviesData.length,
+      getStart: () => startIndex,
+      onChange: (newStart) => {
+        startIndex = newStart;
+        render();
+      },
+    });
+
+    render();
+    return movieContainer;
+  }
+
   innerGenres();
   innerTopRatedMovies();
   innerTrandingMovies();
   innerNewReleases();
+  innerMustWatchMovies();
 
   moviesShows.append(moviesSection);
 
