@@ -43,7 +43,7 @@ const TOKEN =
 
 //   getMovieById(movieId) {
 //     return this.request(`/movie/${movieId}`)
-//   }  
+//   }
 // }
 
 async function request(path, params = {}) {
@@ -172,23 +172,23 @@ export async function getMovieById(movieId) {
 }
 
 export async function getUpcomingMovies() {
-  return request('/movie/upcoming', {
-    language: 'en-US',
+  return request("/movie/upcoming", {
+    language: "en-US",
     page: 2,
-  })
+  });
 }
 
 export async function getGenresShows() {
-  return request('/genre/tv/list', {
-    language: 'en-US',
-  })
+  return request("/genre/tv/list", {
+    language: "en-US",
+  });
 }
 
 export async function getShowsPage(page) {
-  return request('/discover/tv', {
-    language: 'en-US',
+  return request("/discover/tv", {
+    language: "en-US",
     page,
-  })
+  });
 }
 
 export async function getShowsPages(pageCount = 1) {
@@ -209,10 +209,10 @@ export async function getShowsPages(pageCount = 1) {
 }
 
 export async function getPopularShowssPage(page) {
-  return request('/tv/top_rated', {
-    language: 'en-US',
-    page
-  })
+  return request("/tv/top_rated", {
+    language: "en-US",
+    page,
+  });
 }
 
 export async function getPopularShowssPages(pageCount = 1) {
@@ -221,7 +221,9 @@ export async function getPopularShowssPages(pageCount = 1) {
     pages.push(p);
   }
 
-  const responses = await Promise.all(pages.map((p) => getPopularShowssPage(p)));
+  const responses = await Promise.all(
+    pages.map((p) => getPopularShowssPage(p)),
+  );
 
   const allmovies = [];
 
@@ -233,21 +235,27 @@ export async function getPopularShowssPages(pageCount = 1) {
 }
 
 export async function getTrandingShows(page) {
-  return request('/trending/tv/day', {
-    language: 'en-US',
-    page
-  })
+  return request("/trending/tv/day", {
+    language: "en-US",
+    page,
+  });
 }
 
 export async function getShowById(id) {
-  return request(`/tv/${id}`, {
-    language: 'en-US'
-  })
+  return request(`/tv/${id}`, {language: "en-US"});
 }
 
 export async function getupcomingShows(page) {
-  return request('/tv/on_the_air', {
-    language: 'en-US', 
+  return request("/tv/on_the_air", {
+    language: "en-US",
     page,
-  })
+  });
+}
+
+export async function getMovieCredits(id) {
+  return request(`/movie/${id}/credits`, { language: "en-US" });
+}
+
+export async function getMovieReview(id) {
+  return request(`/movie/${id}/reviews`, { language: "en-US" })
 }
