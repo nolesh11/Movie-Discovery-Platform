@@ -177,3 +177,77 @@ export async function getUpcomingMovies() {
     page: 2,
   })
 }
+
+export async function getGenresShows() {
+  return request('/genre/tv/list', {
+    language: 'en-US',
+  })
+}
+
+export async function getShowsPage(page) {
+  return request('/discover/tv', {
+    language: 'en-US',
+    page,
+  })
+}
+
+export async function getShowsPages(pageCount = 1) {
+  const pages = [];
+  for (let p = 1; p <= pageCount; p++) {
+    pages.push(p);
+  }
+
+  const responses = await Promise.all(pages.map((p) => getShowsPage(p)));
+
+  const allmovies = [];
+
+  for (const r of responses) {
+    allmovies.push(...r.results);
+  }
+
+  return allmovies;
+}
+
+export async function getPopularShowssPage(page) {
+  return request('/tv/top_rated', {
+    language: 'en-US',
+    page
+  })
+}
+
+export async function getPopularShowssPages(pageCount = 1) {
+  const pages = [];
+  for (let p = 1; p <= pageCount; p++) {
+    pages.push(p);
+  }
+
+  const responses = await Promise.all(pages.map((p) => getPopularShowssPage(p)));
+
+  const allmovies = [];
+
+  for (const r of responses) {
+    allmovies.push(...r.results);
+  }
+
+  return allmovies;
+}
+
+export async function getTrandingShows(page) {
+  return request('/trending/tv/day', {
+    language: 'en-US',
+    page
+  })
+}
+
+export async function getShowById(id) {
+  return request(`/tv/${id}`, {
+    language: 'en-US'
+  })
+}
+
+export async function getupcomingShows(page) {
+  return request('/tv/on_the_air', {
+    language: 'en-US', 
+    page,
+  })
+}
