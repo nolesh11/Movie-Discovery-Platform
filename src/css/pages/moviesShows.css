@@ -1,11 +1,11 @@
 .popular-movie-container {
-  width: 100%;   
-  aspect-ratio: 1 / 1.5;   
+  width: 100%;
+  aspect-ratio: 1 / 1.5;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: .75rem;
-  border: .0625rem solid var(--color-dark-15);
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--color-dark-15);
   padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-sm);
   margin-bottom: 6rem;
   display: flex;
@@ -33,7 +33,7 @@
   width: 100%;
   color: var(--color-absolute-white);
   background: var(--color-primary-45);
-  padding: .875rem 1.25rem;
+  padding: 0.875rem 1.25rem;
   margin-bottom: 1.25rem;
   border-radius: var(--spacing-xs);
 }
@@ -47,8 +47,8 @@
 .popular-movie-img-btn div {
   background: var(--color-dark-06);
   border-radius: var(--spacing-xs);
-  border: .0625rem solid var(--color-dark-15);
-  padding: .75rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  padding: 0.75rem;
 }
 
 .popular-movie-img-btn img {
@@ -62,9 +62,9 @@
 
 .popular-movie-carusel button {
   margin-top: 1.25rem;
-  padding: .75rem;
+  padding: 0.75rem;
   background: var(--color-dark-06);
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
   border-radius: var(--spacing-xs);
 }
 
@@ -74,7 +74,7 @@
 }
 
 .movies-section::after {
-  content: '';
+  content: "";
 }
 
 .movies-section-switcher {
@@ -82,20 +82,20 @@
   padding: var(--spacing-xs);
   background: var(--color-dark-06);
   border-radius: var(--spacing-xs);
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
   margin-bottom: 1.35rem;
 }
 
 .movies-section-switcher button {
   flex-grow: 1;
   color: var(--color-gray-60);
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .movies-section-switcher button.active-genre-btn {
   background: var(--color-dark-12);
   color: var(--color-absolute-white);
-  border-radius: .375rem;
+  border-radius: 0.375rem;
 }
 
 .genres-list {
@@ -110,9 +110,9 @@
 
 .genre-list-btn button {
   margin-top: 1.25rem;
-  padding: .75rem;
+  padding: 0.75rem;
   background: var(--color-dark-06);
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
   border-radius: var(--spacing-xs);
 }
 
@@ -130,8 +130,8 @@
 .genre-list-card a {
   background-color: var(--color-dark-10);
   padding: var(--spacing-md);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .genre-list-img {
@@ -140,9 +140,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-xs);
-  aspect-ratio: 1 / 1;  
-  overflow: hidden;               
-  place-items: stretch;     
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  place-items: stretch;
   place-content: stretch;
   margin-bottom: var(--spacing-md);
 }
@@ -150,9 +150,9 @@
 .genre-list-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: center;   
-  border-radius: .625rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.625rem;
 }
 
 .genre-title {
@@ -169,8 +169,8 @@
 .rated-list-card a {
   background-color: var(--color-dark-10);
   padding: var(--spacing-md);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .rated-list-img {
@@ -179,9 +179,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-xs);
-  aspect-ratio: 1 / 1;  
-  overflow: hidden;               
-  place-items: stretch;     
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  place-items: stretch;
   place-content: stretch;
   margin-bottom: var(--spacing-md);
 }
@@ -189,9 +189,9 @@
 .rated-list-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: center;   
-  border-radius: .625rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.625rem;
 }
 
 .rated-title {
@@ -206,7 +206,7 @@
 
 .rated-title-cont span:first-child {
   width: fit-content;
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: 500;
   background: var(--color-primary-45);
   padding: var(--spacing-xs);
@@ -223,29 +223,29 @@
 .tranding-list-card a {
   background-color: var(--color-dark-10);
   padding: var(--spacing-md);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .tranding-poster {
-  overflow: hidden;               
-  place-items: stretch;     
+  overflow: hidden;
+  place-items: stretch;
   place-content: stretch;
 }
 
 .tranding-poster img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: center;   
-  border-radius: .625rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.625rem;
 }
 
 .tranding-header {
-  margin-top: .75rem;
+  margin-top: 0.75rem;
   display: flex;
   justify-content: space-between;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 .tranding-header span:first-child {
@@ -255,12 +255,12 @@
 .tranding-header div {
   flex: 0 0 auto;
   display: flex;
-  gap: .3125rem;
+  gap: 0.3125rem;
   color: var(--color-gray-60);
   background: var(--color-dark-08);
-  padding: .25rem var(--spacing-xs) .25rem .25rem;
+  padding: 0.25rem var(--spacing-xs) 0.25rem 0.25rem;
   border-radius: 3.1875rem;
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .tranding-header div img {
@@ -273,7 +273,7 @@
 }
 
 .upcoming-list-card {
-  display: grid; 
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-sm);
   margin-bottom: 2rem;
@@ -282,24 +282,24 @@
 .upcoming-list-card a {
   background-color: var(--color-dark-10);
   padding: var(--spacing-sm);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .upcoming-poster {
-  overflow: hidden;               
-  place-items: stretch;     
+  overflow: hidden;
+  place-items: stretch;
   place-content: stretch;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .upcoming-poster img {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: center;   
-  border-radius: .625rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.625rem;
 }
 
 .upcoming-title {
@@ -307,10 +307,10 @@
   justify-content: center;
   color: var(--color-gray-60);
   background: var(--color-dark-08);
-  padding: .25rem var(--spacing-xs) .25rem .25rem;
+  padding: 0.25rem var(--spacing-xs) 0.25rem 0.25rem;
   border-radius: 3.1875rem;
-  border: .0625rem solid var(--color-dark-15);
-  font-size: .75rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  font-size: 0.75rem;
 }
 
 .upcoming-title span {
@@ -322,7 +322,7 @@
 }
 
 .must-watch-list-card {
-  display: grid; 
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-sm);
   margin-bottom: 2rem;
@@ -331,26 +331,30 @@
 .must-watch-list-card a {
   background-color: var(--color-dark-10);
   padding: var(--spacing-sm);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .must-watch-title {
   margin-top: var(--spacing-sm);
   display: flex;
   justify-content: space-between;
-  font-size: .75rem;
+  font-size: 0.75rem;
+}
+
+.must-watch-poster img {
+  border-radius: 0.625rem;
 }
 
 .movie-runtime {
   display: inline-flex;
-  gap: .25rem;
+  gap: 0.25rem;
   align-items: center;
   flex: 0 0 auto;
   background: var(--color-dark-08);
-  padding: .375rem .625rem .375rem .375rem;
+  padding: 0.375rem 0.625rem 0.375rem 0.375rem;
   border-radius: 3.1875rem;
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .must-watch-title div:first-child {
@@ -363,13 +367,13 @@
 
 .movie-rating {
   display: inline-flex;
-  gap: .25rem;
+  gap: 0.25rem;
   align-items: center;
   flex: 0 0 auto;
   background: var(--color-dark-08);
-  padding: .375rem .625rem .375rem .375rem;
+  padding: 0.375rem 0.625rem 0.375rem 0.375rem;
   border-radius: 3.1875rem;
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
 }
 
 .stars-rating {
@@ -389,6 +393,23 @@
   background: url("/assets/icons/starIconFilled.svg") repeat-x;
   background-size: 14px 14px;
   overflow: hidden;
+}
+
+.shows-section {
+  position: relative;
+  margin-bottom: 100px;
+}
+
+/* .active-section {
+  display: block;
+} */
+
+.closed-section {
+  display: none;
+}
+
+.shows-section::after {
+  content: "";
 }
 
 @media (min-width: 1024px) {
@@ -417,19 +438,37 @@
   }
 
   .movies-section {
-    border: .0625rem solid var(--color-dark-15);
+    border: 0.0625rem solid var(--color-dark-15);
     padding: 2.5rem;
   }
 
   .movies-section::after {
-    content: 'Movies';
+    content: "Movies";
     position: absolute;
     top: -1.25rem;
     background: var(--color-primary-45);
     padding: var(--spacing-xs) 1.25rem;
     border-radius: var(--spacing-xs);
   }
-  
+
+  .closed-section {
+    display: block;
+  }
+
+  .shows-section {
+    border: 0.0625rem solid var(--color-dark-15);
+    padding: 2.5rem;
+  }
+
+  .shows-section::after {
+    content: "Shows";
+    position: absolute;
+    top: -1.25rem;
+    background: var(--color-primary-45);
+    padding: var(--spacing-xs) 1.25rem;
+    border-radius: var(--spacing-xs);
+  }
+
   .movies-section-switcher {
     display: none;
   }
@@ -461,14 +500,14 @@
   }
 
   .upcoming-list-card {
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
   }
 
   .upcoming-poster {
     margin-bottom: var(--spacing-md);
-  }  
+  }
 
   .must-watch-list-card {
     grid-template-columns: repeat(4, 1fr);
