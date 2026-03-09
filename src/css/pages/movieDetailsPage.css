@@ -1,6 +1,10 @@
+#movie-container {
+  margin-bottom: 100px;
+}
+
 .movie-container {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1.5;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,6 +15,7 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
+  align-items: center;
   position: relative;
 }
 
@@ -33,4 +38,292 @@
 
 .movie-container h2 p {
   text-align: center;
+}
+
+.movie-container p {
+  display: none;
+}
+
+.movie-info {
+  display: grid;
+  grid-template-areas:
+    "description"
+    "movie-info-details"
+    "cast"
+    "review";
+  gap: 1.25rem;
+}
+
+.movie-description {
+  grid-area: description;
+  background: var(--color-dark-10);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: var(--spacing-md);
+}
+
+.movie-description p:last-child {
+  color: var(--color-absolute-white);
+  margin-top: var(--spacing-xs);
+}
+
+.movie-info-details {
+  grid-area: movie-info-details;
+  background: var(--color-dark-10);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.movie-release-info,
+.movie-language-header {
+  display: flex;
+  gap: 0.125rem;
+  margin-bottom: 0.625rem;
+}
+
+.movie-release-date {
+  font-weight: 500;
+}
+
+.movie-languages-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.movie-languages-list p {
+  color: var(--color-absolute-white);
+  background: var(--color-dark-08);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.movie-ratings-info {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.movie-rating-tmdb {
+  background: var(--color-dark-08);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.movie-rating-tmdb p {
+  color: var(--color-absolute-white);
+  font-size: var(--font-size-sm);
+}
+
+.movie-rating-info {
+  width: fit-content;
+  display: flex;
+}
+
+.stars-rating {
+  align-self: end;
+}
+
+.movie-rating-tmdb div span {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.movie-genres-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.movie-genres-list p {
+  background: var(--color-dark-08);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.movie-crew {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.movie-director-list,
+.movie-music-item {
+  display: flex;
+  gap: var(--spacing-xs);
+  background: var(--color-dark-08);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: 0.625rem;
+  margin-top: 0.625rem;
+}
+
+.director-profile-photo,
+.music-profile-photo {
+  width: 50px;
+}
+
+.director-profile-photo img,
+.music-profile-photo img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.625rem;
+}
+
+.movie-music-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-cast {
+  grid-area: cast;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  background: var(--color-dark-10);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: var(--spacing-md);
+}
+
+.movie-cast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cast-header__btns button,
+.reviews-btns button {
+  background: var(--color-dark-08);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 50%;
+  padding: 0.75rem;
+  margin-left: var(--spacing-xs);
+}
+
+.movie-cast-list {
+  display: flex;
+  gap: 0.625rem;
+  /* justify-content: space-around; */
+}
+
+.cast-img {
+  width: 5rem;
+}
+
+.cast-img img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.625rem;
+}
+
+.movie-review {
+  grid-area: review;
+  background: var(--color-dark-10);
+  border: 0.0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  padding: var(--spacing-md);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-review-btn {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--color-dark-08);
+  border-radius: 0.375rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  padding: 0.75rem;
+}
+
+.add-review-btn button {
+  color: var(--color-absolute-white);
+}
+
+.movie-review-info {
+  display: flex;
+  /* flex-direction: column; */
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.movie-review-user-info {
+  background: var(--color-dark-06);
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.movie-review-uner-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-name p:first-child {
+  color: var(--color-absolute-white);
+  font-size: var(--font-size-base);
+}
+
+.user-review-rate {
+  display: flex;
+  gap: 0.125rem;
+  background: var(--color-dark-08);
+  border-radius: 6rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  padding: 0.25rem var(--spacing-xs);
+}
+
+.stars-rating,
+.user-review-rate span {
+  align-self: center;
+}
+
+.user-review-rate span {
+  color: var(--color-gray-60);
+  font-size: var(--font-size-sm);
+}
+
+.reviews-btns {
+  margin-top: var(--spacing-md);
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .movie-container {
+    aspect-ratio: 16 / 9;
+  }
+
+  .movie-container p {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .movie-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "description movie-info-details"
+      "cast movie-info-details"
+      "review movie-info-details";
+  }
+
+  .movie-review {
+    height: fit-content;
+  }
 }
