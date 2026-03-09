@@ -4,7 +4,6 @@ import { renderPosters } from '../components/RenderPosters.js';
 export async function HomePage() {
   const moviesData = await getMoviesPage(3);
   const moviesDataArray = moviesData.results;
-  console.log(moviesDataArray);
   
   const container = document.createElement('div');
   container.id = 'main-page';
@@ -303,8 +302,6 @@ export async function HomePage() {
 
   listQuestions.addEventListener('click', (e) => {
     const item = e.target.closest('.faq-question');
-    console.log('target', e.target);
-    console.log('btn', item);
     if(!item) return;
     
     const desc = item.querySelector('.faq-description'); 
