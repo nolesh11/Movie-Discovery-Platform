@@ -19,7 +19,7 @@ import { formatDate } from "../components/FormatDate.js";
 import { hydrateRuntime } from "../components/HydrateRuntime.js";
 import { hydratePosters } from "../components/HydratePosters.js";
 import { hydrateSeasons } from "../components/HydrateSeasons.js";
-import { hydrateEpisodeRuntime } from "../components/HedrateEpisodRuntime.js";
+import { hydrateEpisodeRuntime } from "../components/HydrateEpisodRuntime.js";
 
 export async function MoviesShowsPage() {
   const popularMovies = await getPopularMovies(2);
