@@ -20,6 +20,7 @@ import { hydrateRuntime } from "../components/HydrateRuntime.js";
 import { hydratePosters } from "../components/HydratePosters.js";
 import { hydrateSeasons } from "../components/HydrateSeasons.js";
 import { hydrateEpisodeRuntime } from "../components/HydrateEpisodRuntime.js";
+import { getCastPaginationConfig } from "../components/PaginationConfig.js";
 
 export async function MoviesShowsPage() {
   const popularMovies = await getPopularMovies(2);
@@ -201,7 +202,7 @@ export async function MoviesShowsPage() {
           <button class='tranding-next'><img src='./assets/icons/nextArrow.svg' /></button>
         </div>
       </div>
-      <div class='tranding-list-card'></div>
+      <div class='tranding-shows-list-card'></div>
     </div>
     <div class='upcoming-list'>
       <div class='genre-heading'>
@@ -211,7 +212,7 @@ export async function MoviesShowsPage() {
           <button class='upcoming-next'><img src='./assets/icons/nextArrow.svg' /></button>
         </div>
       </div>
-      <div class='upcoming-list-card'></div>
+      <div class='upcoming-shows-list-card'></div>
     </div>
     <div class='must-watch-list'>
       <div class='genre-heading'>
@@ -252,8 +253,7 @@ export async function MoviesShowsPage() {
     const prevBtn = moviesSection.querySelector(".genre-prev");
     const nextBtn = moviesSection.querySelector(".genre-next");
     let startIndex = 0;
-    const pageSize = 5;
-    const step = 5;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
 
     function renderGenres(visible) {
       genresContainer.innerHTML = visible
@@ -304,8 +304,7 @@ export async function MoviesShowsPage() {
     const prevBtn = moviesSection.querySelector(".rated-prev");
     const nextBtn = moviesSection.querySelector(".rated-next");
     let startIndex = 0;
-    const pageSize = 4;
-    const step = 4;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
 
     function renderRatedMovies() {
       ratedMoviesContainer.innerHTML = genresData
@@ -357,8 +356,8 @@ export async function MoviesShowsPage() {
       ".tranding-list-card",
     );
     let startIndex = 0;
-    const pageSize = 5;
-    const step = 5;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
+
     const prevBtn = moviesSection.querySelector(".tranding-prev");
     const nextBtn = moviesSection.querySelector(".tranding-next");
 
@@ -422,8 +421,7 @@ export async function MoviesShowsPage() {
     const prevBtn = moviesSection.querySelector(".upcoming-prev");
     const nextBtn = moviesSection.querySelector(".upcoming-next");
     let startIndex = 0;
-    const pageSize = 5;
-    const step = 5;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
 
     function renderUpcoming(visiable) {
       newReleasesContainer.innerHTML = visiable
@@ -475,8 +473,8 @@ export async function MoviesShowsPage() {
     const nextBtn = moviesSection.querySelector(".must-watch-next");
 
     let startIndex = 0;
-    const pageSize = 4;
-    const step = 4;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
+
 
     function rendermustWatchMovies(visible) {
       function fillRatingStars(rating) {
@@ -541,8 +539,7 @@ export async function MoviesShowsPage() {
     const prevBtn = showsSection.querySelector(".genre-prev");
     const nextBtn = showsSection.querySelector(".genre-next");
     let startIndex = 0;
-    const pageSize = 5;
-    const step = 5;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
 
     function renderGenresShows(visiable) {
       genresShowsContainer.innerHTML = visiable
@@ -595,8 +592,7 @@ export async function MoviesShowsPage() {
     const nextBtn = showsSection.querySelector(".rated-next");
 
     let startIndex = 0;
-    const pageSize = 4;
-    const step = 4;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
 
     function renderPopularShows(visiable) {
       popularShowsContainer.innerHTML = visiable
@@ -645,14 +641,13 @@ export async function MoviesShowsPage() {
 
   async function innerTrandingShows() {
     const trandingShowsContainer = showsSection.querySelector(
-      ".tranding-list-card",
+      ".tranding-shows-list-card",
     );
     const prevBtn = showsSection.querySelector(".tranding-prev");
     const nextBtn = showsSection.querySelector(".tranding-next");
 
     let startIndex = 0;
-    const pageSize = 5;
-    const step = 5;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
 
     function renderTrandingShows(visiable) {
       trandingShowsContainer.innerHTML = visiable
@@ -715,13 +710,12 @@ export async function MoviesShowsPage() {
   }
 
   async function innerUpcomingShows() {
-    const upcomingContainer = showsSection.querySelector(".upcoming-list-card");
+    const upcomingContainer = showsSection.querySelector(".upcoming-shows-list-card");
     const prevBtn = showsSection.querySelector(".upcoming-prev");
     const nextBtn = showsSection.querySelector(".upcoming-next");
 
     let startIndex = 0;
-    const pageSize = 5;
-    const step = 5;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
 
     function renderUpcomingShows(visiable) {
       upcomingContainer.innerHTML = visiable
@@ -791,8 +785,7 @@ export async function MoviesShowsPage() {
     const nextBtn = showsSection.querySelector(".must-watch-next");
 
     let startIndex = 0;
-    const pageSize = 4;
-    const step = 4;
+    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
 
     function renderMustWatchShows(visiable) {
       function fillRatingStars(rating) {
