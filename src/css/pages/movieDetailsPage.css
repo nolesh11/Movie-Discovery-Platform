@@ -170,13 +170,16 @@
 .director-profile-photo,
 .music-profile-photo {
   width: 50px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.625rem;
+
 }
 
 .director-profile-photo img,
 .music-profile-photo img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 0.625rem;
+  object-fit: cover;
 }
 
 .movie-music-list {
@@ -213,17 +216,20 @@
 .movie-cast-list {
   display: flex;
   gap: 0.625rem;
-  /* justify-content: space-around; */
 }
 
 .cast-img {
   width: 5rem;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.625rem;
+
 }
 
 .cast-img img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 0.625rem;
+  object-fit: cover;
+  display: block;
 }
 
 .movie-review {
