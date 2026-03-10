@@ -1,5 +1,6 @@
 import { getMovieById, getMovieCredits, getMovieReview } from "../api/api.js";
 import { pagination } from "../components/Pagination.js";
+import { getCastPaginationConfig } from "../components/PaginationConfig.js";
 
 export async function MovieDetailsPage({ id }) {
   const [movieById, credits, review] = await Promise.all([
@@ -136,18 +137,6 @@ export async function MovieDetailsPage({ id }) {
       </div>
     </div>
   `;
-
-  function getCastPaginationConfig(
-    pageSizeMob,
-    stepMob,
-    pageSizeDesc,
-    stepDesc,
-  ) {
-    const isMobile = window.matchMedia("(max-width: 640px)").matches;
-    return isMobile
-      ? { pageSize: pageSizeMob, step: stepMob }
-      : { pageSize: pageSizeDesc, step: stepDesc };
-  }
 
   function formatDate(releasedYear) {
     const container = movieInfo.querySelector(".movie-release-date");
