@@ -400,9 +400,34 @@
   margin-bottom: 100px;
 }
 
-/* .active-section {
-  display: block;
-} */
+.tranding-shows-list-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.tranding-shows-list-card a {
+  background-color: var(--color-dark-10);
+  padding: var(--spacing-sm);
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
+}
+.tranding-header span {
+  font-size: .75rem;
+}
+
+.upcoming-shows-list-card {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.upcoming-shows-list-card a {
+  background-color: var(--color-dark-10);
+  padding: var(--spacing-sm);
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
+}
 
 .closed-section {
   display: none;
@@ -510,6 +535,14 @@
   }
 
   .must-watch-list-card {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .tranding-shows-list-card {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .upcoming-shows-list-card {
     grid-template-columns: repeat(4, 1fr);
   }
 }
