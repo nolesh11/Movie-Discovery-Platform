@@ -187,10 +187,7 @@ export async function MovieDetailsPage({ id }) {
     const containerMus = movieInfo.querySelector(".movie-music-list");
     const music = credits.crew.filter(
       (j) => j.department === "Sound",
-    ).slice(0, 1);    
-
-    console.log(credits.crew);
-    
+    ).slice(0, 1);       
 
     containerDir.innerHTML = director
       .map((j) => {
