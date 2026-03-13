@@ -653,7 +653,7 @@ export async function MoviesShowsPage() {
       trandingShowsContainer.innerHTML = visiable
         .map(
           (s) => `
-            <a>
+            <a href='#/tv/${s.id}'>
               <div class='tranding-poster'>
                 <img src='https://image.tmdb.org/t/p/original${s.poster_path}' />
               </div>
@@ -721,7 +721,7 @@ export async function MoviesShowsPage() {
       upcomingContainer.innerHTML = visiable
         .map(
           (s) => `
-            <a>
+            <a href='#/tv/${s.id}'>
               <div class='tranding-poster'>
                 <img src='https://image.tmdb.org/t/p/original${s.poster_path}' />
               </div>
@@ -797,7 +797,7 @@ export async function MoviesShowsPage() {
           const answer = fillRatingStars(s.vote_average);
 
           return `
-            <a>
+            <a href='#/tv/${s.id}'>
               <div class='must-watch-poster'>
                 <img src='https://image.tmdb.org/t/p/original${s.poster_path}' />
               </div>
@@ -816,6 +816,8 @@ export async function MoviesShowsPage() {
         })
         .join("");
     }
+
+    
 
     async function render() {
       const visiable = showsshowsMustWatchPageData.slice(
@@ -846,6 +848,9 @@ export async function MoviesShowsPage() {
     });
 
     render();
+
+    const a = showsMustWatch.getElementsByTagName('a');
+    console.log(a);
 
     return showsMustWatch;
   }
