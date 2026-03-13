@@ -36,12 +36,9 @@
   z-index: 0;
 }
 
-.movie-container h2 p {
+.movie-container h2, .movie-container p {
   text-align: center;
-}
-
-.movie-container p {
-  display: none;
+  margin-bottom: var(--spacing-xs);
 }
 
 .movie-info {
@@ -173,7 +170,6 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 0.625rem;
-
 }
 
 .director-profile-photo img,
@@ -223,7 +219,6 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 0.625rem;
-
 }
 
 .cast-img img {
@@ -311,6 +306,9 @@
 }
 
 @media (min-width: 1024px) {
+  .movie-container p {
+    display: none;
+  }
   .movie-container {
     aspect-ratio: 16 / 9;
   }
