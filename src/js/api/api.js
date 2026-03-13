@@ -235,7 +235,7 @@ export async function getPopularShowssPages(pageCount = 1) {
 }
 
 export async function getTrandingShows(page) {
-  return request("/trending/tv/day", {
+  return request("/trending/tv/week", {
     language: "en-US",
     page,
   });
@@ -259,3 +259,8 @@ export async function getMovieCredits(id) {
 export async function getMovieReview(id) {
   return request(`/movie/${id}/reviews`, { language: "en-US" })
 }
+
+export async function getTvSeason(id, seasonNumber) {
+  return request(`/tv/${id}/season/${seasonNumber}`, { language: "en-US" });
+}
+
