@@ -3,6 +3,7 @@ import { MoviesShowsPage } from "./pages/MoviesShowsPage.js";
 import { SupportPage } from "./pages/SupportPage.js";
 import { SubscriptionsPage } from "./pages/SubscriptionsPage.js";
 import { MovieDetailsPage } from "./pages/MovieDetailsPage.js";
+import { ShowsDetailsPage } from "./pages/ShowDetailsPage.js";
 
 const routes = {
   "#/home": HomePage,
@@ -14,21 +15,26 @@ const routes = {
 async function renderRouter() {
   const main = document.getElementById("main");
   const hash = window.location.hash || "#/home";
-  const path = hash.split('?')[0];
-
+  const path = hash.split("?")[0];
 
   main.innerHTML = "";
 
-  if(path.startsWith('#/movie/')) {
-    const id = path.split('/')[2];
-    main.append(await MovieDetailsPage({id}))
-    return
-  } 
+  if (path.startsWith("#/movie/")) {
+    const id = path.split("/")[2];
+    main.append(await MovieDetailsPage({ id }));
+    return;
+  }
+
+  if (path.startsWith("#/tv/")) {
+    const id = path.split("/")[2];
+    main.append(await ShowsDetailsPage({ id }));
+    return;
+  }
 
   const renderPage = routes[hash];
 
-  if(typeof renderPage !== 'function') {
-    window.location.hash = '#/home';
+  if (typeof renderPage !== "function") {
+    window.location.hash = "#/home";
     return;
   }
 
