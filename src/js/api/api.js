@@ -264,3 +264,11 @@ export async function getTvSeason(id, seasonNumber) {
   return request(`/tv/${id}/season/${seasonNumber}`, { language: "en-US" });
 }
 
+export async function getShowCredits(id) {
+  return request(`/tv/${id}/credits`, { language: "en-US" })
+}
+
+export async function getShowReviews(id) {
+  return request(`/tv/${id}/reviews`, { language: "en-US" })
+}
+
