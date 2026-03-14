@@ -19,16 +19,22 @@
   border: .0625rem solid var(--color-dark-15);
 } 
 
-.open {
+
+.input {
+  display: none;
+  color: var(--color-absolute-white);
+  border: .125rem solid var(--color-dark-15);
+  border-radius: .625rem;
+  padding: .625rem;
+}
+
+.input.open {
   display: block;
 }
 
-.search-input {
-  display: none;
-  color: var(--color-absolute-white);
-  border: .0625rem solid var(--color-dark-15);
-  border-radius: .625rem;
-  padding: .625rem;
+
+.input::placeholder {
+  color: var(--color-gray-60);
 }
 
 .result-img {

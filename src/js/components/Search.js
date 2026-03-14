@@ -6,13 +6,13 @@ export async function Search(header) {
 
   function searchPanel() {
     const existing = header.querySelector(".search-container");
-    const input = header.querySelector("input");
+    const input = header.querySelector(".input");   
 
     if (existing) {
       existing.remove();
       input?.classList.remove("open");
       return;
-    }
+    } 
 
     input?.classList.add("open");
 

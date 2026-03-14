@@ -17,7 +17,7 @@ export function Header() {
     </nav>
 
     <div class='header-btn'>
-      <input class='search-input' type='text' placeholder='Title, name' value />
+      <input type='text' placeholder='Title, name' value class='input' name='search' />
       <button class='search-btn'>
         <img src='./assets/icons/SearchIcon.svg' alt='Search button' />
       </button>
