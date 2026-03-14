@@ -6,6 +6,8 @@ export function pagination({
   onChange,
   getTotal,
   getStart,
+  root,
+  targetClass,
 }) {
   if (!prevBtn || !nextBtn) {
     throw new Error(
@@ -17,6 +19,12 @@ export function pagination({
     prevBtn.addEventListener("click", () => {
       const newStart = Math.max(0, getStart() - step);
       onChange(newStart);
+      const container = root.querySelectorAll(`.${targetClass}`);
+      container.forEach((p) => {
+        p.classList.remove("is-reveal");
+        void p.offsetWidth;
+        p.classList.add("is-reveal");
+      });
     });
   }
 
@@ -25,11 +33,17 @@ export function pagination({
       const maxStart = Math.max(0, getTotal() - pageSize);
       const newStart = Math.min(maxStart, getStart() + step);
       onChange(newStart);
+      const container = root.querySelectorAll(`.${targetClass}`);
+      container.forEach((p) => {
+        p.classList.remove("is-reveal");
+        void p.offsetWidth;
+        p.classList.add("is-reveal");
+      });
     });
   }
 
   onPrev();
-  onNext()
+  onNext();
 
   return () => {
     prevBtn.removeEventlistener("click", onPrev);
