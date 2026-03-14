@@ -360,6 +360,8 @@ export async function ShowsDetailsPage({ id }) {
       nextBtn,
       pageSize,
       step,
+      root: showInfo,
+      targetClass: 'cast-img',
       getTotal: () => dataCast.length,
       getStart: () => startIndex,
       onChange: (newStart) => {
@@ -395,18 +397,18 @@ export async function ShowsDetailsPage({ id }) {
           return `
           <div class='movie-review-user-info'>
             <div class='movie-review-uner-info'>
-                <div class='user-name'>
-                  <p>${r.author}</p>
-                  <p>From No Data</p>
-                </div>
-                <div class='user-review-rate'>
-                  <div class='stars-rating' style="--fill: ${answer}%"></div>
-                  <span>${Math.round((r.author_details.rating / 2) * 10) / 10}</span>
-                </div>
+              <div class='user-name'>
+                <p>${r.author}</p>
+                <p>From No Data</p>
               </div>
-              <div class='user-review'>
-                <p>${cutString(r.content, 400)}</p>
+              <div class='user-review-rate'>
+                <div class='stars-rating' style="--fill: ${answer}%"></div>
+                <span>${Math.round((r.author_details.rating / 2) * 10) / 10}</span>
               </div>
+            </div>
+            <div class='user-review'>
+              <p>${cutString(r.content, 400)}</p>
+            </div>
           </div>
             
           `;
@@ -419,6 +421,8 @@ export async function ShowsDetailsPage({ id }) {
       nextBtn,
       pageSize,
       step,
+      root: showInfo,
+      targetClass: 'movie-review-user-info',
       getTotal: () => data.length,
       getStart: () => startIndex,
       onChange: (newStart) => {

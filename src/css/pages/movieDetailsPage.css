@@ -183,11 +183,6 @@
   object-fit: cover;
 }
 
-.movie-music-list {
-  display: flex;
-  flex-direction: column;
-}
-
 .movie-cast {
   grid-area: cast;
   display: flex;

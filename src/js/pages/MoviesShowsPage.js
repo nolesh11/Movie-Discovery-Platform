@@ -241,9 +241,11 @@ export async function MoviesShowsPage() {
       if (showsBtn) {
         movies.classList.add("closed-section");
         shows.classList.remove("closed-section");
+        shows.classList.add('is-reveal')
       } else {
         movies.classList.remove("closed-section");
         shows.classList.add("closed-section");
+        movies.classList.add('is-reveal')
       }
     });
   });
@@ -253,13 +255,13 @@ export async function MoviesShowsPage() {
     const prevBtn = moviesSection.querySelector(".genre-prev");
     const nextBtn = moviesSection.querySelector(".genre-next");
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 5, 5);
 
     function renderGenres(visible) {
       genresContainer.innerHTML = visible
         .map(
           (g) => `
-            <a href='#/home'>
+            <a href='#/home' class='genre-list-cards'>
               <div class='genre-list-img' data-genre-id='${g.id}'></div>
               <div class='genre-title'>
                 <span>${g.name}</span> 
@@ -291,6 +293,8 @@ export async function MoviesShowsPage() {
       },
       getTotal: () => genresData.length,
       getStart: () => startIndex,
+      root: moviesSection,
+      targetClass: "genre-list-cards",
     });
 
     render();
@@ -304,14 +308,14 @@ export async function MoviesShowsPage() {
     const prevBtn = moviesSection.querySelector(".rated-prev");
     const nextBtn = moviesSection.querySelector(".rated-next");
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 4, 4);
 
     function renderRatedMovies() {
       ratedMoviesContainer.innerHTML = genresData
         .slice(startIndex, startIndex + pageSize)
         .map(
           (r) => `
-            <a href='#/home'>
+            <a href='#/home' class='rated-list'>
               <div class='rated-list-img' data-genre-id='${r.id}'></div>
               <div class='rated-title'>
                 <div class='rated-title-cont'>
@@ -345,6 +349,8 @@ export async function MoviesShowsPage() {
       },
       getTotal: () => genresData.length,
       getStart: () => startIndex,
+      root: moviesSection,
+      targetClass: "rated-list",
     });
 
     render();
@@ -356,7 +362,7 @@ export async function MoviesShowsPage() {
       ".tranding-list-card",
     );
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 5, 5);
 
     const prevBtn = moviesSection.querySelector(".tranding-prev");
     const nextBtn = moviesSection.querySelector(".tranding-next");
@@ -365,7 +371,7 @@ export async function MoviesShowsPage() {
       trandingContainer.innerHTML = visible
         .map(
           (m) => `
-            <a href='#/movie/${m.id}'>
+            <a href='#/movie/${m.id}' class='tranding-list'>
               <div class='tranding-poster'>
                 <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
               </div>
@@ -407,6 +413,8 @@ export async function MoviesShowsPage() {
         startIndex = newStart;
         render();
       },
+      root: moviesSection,
+      targetClass: "tranding-list",
     });
 
     render();
@@ -421,13 +429,13 @@ export async function MoviesShowsPage() {
     const prevBtn = moviesSection.querySelector(".upcoming-prev");
     const nextBtn = moviesSection.querySelector(".upcoming-next");
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 5, 5);
 
     function renderUpcoming(visiable) {
       newReleasesContainer.innerHTML = visiable
         .map(
           (m) => `
-            <a href='#/movie/${m.id}'>
+            <a href='#/movie/${m.id}' class='upcoming-list'>
               <div class='upcoming-poster'>
                 <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
               </div>
@@ -461,6 +469,8 @@ export async function MoviesShowsPage() {
         startIndex = newStart;
         render();
       },
+      root: moviesSection,
+      targetClass: "upcoming-list",
     });
 
     render();
@@ -473,8 +483,7 @@ export async function MoviesShowsPage() {
     const nextBtn = moviesSection.querySelector(".must-watch-next");
 
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
-
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 4, 4);
 
     function rendermustWatchMovies(visible) {
       function fillRatingStars(rating) {
@@ -486,7 +495,7 @@ export async function MoviesShowsPage() {
           const answer = fillRatingStars(m.vote_average);
 
           return `
-            <a href='#/movie/${m.id}'>
+            <a href='#/movie/${m.id}' class='must-watch'>
               <div class='must-watch-poster'>
                 <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
               </div>
@@ -528,6 +537,8 @@ export async function MoviesShowsPage() {
         startIndex = newStart;
         render();
       },
+      root: moviesSection,
+      targetClass: "must-watch",
     });
 
     render();
@@ -539,13 +550,13 @@ export async function MoviesShowsPage() {
     const prevBtn = showsSection.querySelector(".genre-prev");
     const nextBtn = showsSection.querySelector(".genre-next");
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 5, 5);
 
     function renderGenresShows(visiable) {
       genresShowsContainer.innerHTML = visiable
         .map(
           (s) => `
-            <a href='#/home'>
+            <a href='#/home' class='genre-list-cards'>
               <div class='genre-list-img' data-genre-id='${s.id}'></div>
               <div class='genre-title'>
                 <span>${s.name}</span> 
@@ -578,6 +589,8 @@ export async function MoviesShowsPage() {
       },
       getTotal: () => showsPages.length,
       getStart: () => startIndex,
+      root: showsSection,
+      targetClass: "genre-list-cards",
     });
 
     render();
@@ -592,13 +605,13 @@ export async function MoviesShowsPage() {
     const nextBtn = showsSection.querySelector(".rated-next");
 
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 4, 4);
 
     function renderPopularShows(visiable) {
       popularShowsContainer.innerHTML = visiable
         .map(
           (s) => `
-            <a href='#/home'>
+            <a href='#/home' class='rated-list'>
               <div class='rated-list-img' data-genre-id='${s.id}'></div>
               <div class='rated-title'>
                 <div class='rated-title-cont'>
@@ -634,6 +647,8 @@ export async function MoviesShowsPage() {
       },
       getTotal: () => showsPopularPages.length,
       getStart: () => startIndex,
+      root: showsSection,
+      targetClass: "rated-list",
     });
 
     render();
@@ -647,13 +662,13 @@ export async function MoviesShowsPage() {
     const nextBtn = showsSection.querySelector(".tranding-next");
 
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 4, 4);
 
     function renderTrandingShows(visiable) {
       trandingShowsContainer.innerHTML = visiable
         .map(
           (s) => `
-            <a href='#/tv/${s.id}'>
+            <a href='#/tv/${s.id}' class='tranding-shows'>
               <div class='tranding-poster'>
                 <img src='https://image.tmdb.org/t/p/original${s.poster_path}' />
               </div>
@@ -704,24 +719,28 @@ export async function MoviesShowsPage() {
         startIndex = newStart;
         render();
       },
+      root: showsSection,
+      targetClass: "tranding-shows",
     });
 
     render();
   }
 
   async function innerUpcomingShows() {
-    const upcomingContainer = showsSection.querySelector(".upcoming-shows-list-card");
+    const upcomingContainer = showsSection.querySelector(
+      ".upcoming-shows-list-card",
+    );
     const prevBtn = showsSection.querySelector(".upcoming-prev");
     const nextBtn = showsSection.querySelector(".upcoming-next");
 
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 4, 4);
 
     function renderUpcomingShows(visiable) {
       upcomingContainer.innerHTML = visiable
         .map(
           (s) => `
-            <a href='#/tv/${s.id}'>
+            <a href='#/tv/${s.id}' class='upcoming-shows'>
               <div class='tranding-poster'>
                 <img src='https://image.tmdb.org/t/p/original${s.poster_path}' />
               </div>
@@ -766,6 +785,8 @@ export async function MoviesShowsPage() {
       nextBtn,
       pageSize,
       step,
+      root: showsSection,
+      targetClass: "upcoming-shows",
       getTotal: () => showsUpcomingPageData.length,
       getStart: () => startIndex,
       onChange: (newStart) => {
@@ -785,7 +806,7 @@ export async function MoviesShowsPage() {
     const nextBtn = showsSection.querySelector(".must-watch-next");
 
     let startIndex = 0;
-    let {pageSize, step} = getCastPaginationConfig(2, 2, 4, 4)
+    let { pageSize, step } = getCastPaginationConfig(2, 2, 4, 4);
 
     function renderMustWatchShows(visiable) {
       function fillRatingStars(rating) {
@@ -797,7 +818,7 @@ export async function MoviesShowsPage() {
           const answer = fillRatingStars(s.vote_average);
 
           return `
-            <a href='#/tv/${s.id}'>
+            <a href='#/tv/${s.id}' class='must-watch'>
               <div class='must-watch-poster'>
                 <img src='https://image.tmdb.org/t/p/original${s.poster_path}' />
               </div>
@@ -816,8 +837,6 @@ export async function MoviesShowsPage() {
         })
         .join("");
     }
-
-    
 
     async function render() {
       const visiable = showsshowsMustWatchPageData.slice(
@@ -839,6 +858,8 @@ export async function MoviesShowsPage() {
       nextBtn,
       pageSize,
       step,
+      root: showsSection,
+      targetClass: "must-watch",
       getTotal: () => showsshowsMustWatchPageData.length,
       getStart: () => startIndex,
       onChange: (newStart) => {

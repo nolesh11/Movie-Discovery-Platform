@@ -102,6 +102,17 @@
   margin-bottom: 2rem;
 }
 
+.genre-list-cards {
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.genre-list-cards:hover {
+  border: 0.125rem solid var(--color-primary-45);
+}
+
 .genre-list-btn {
   display: flex;
   justify-content: space-between;
@@ -120,6 +131,21 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
+}
+
+.genre-list-card.is-reveal {
+  animation: cardReveal 1s ease;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .genre-heading {
@@ -171,6 +197,14 @@
   padding: var(--spacing-md);
   border-radius: 0.625rem;
   border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.rated-list-card a:hover {
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .rated-list-img {
@@ -213,11 +247,14 @@
   border-radius: var(--spacing-xs);
 }
 
+.tranding-list {
+  margin-bottom: 2rem;
+}
+
 .tranding-list-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-sm);
-  margin-bottom: 2rem;
 }
 
 .tranding-list-card a {
@@ -225,6 +262,14 @@
   padding: var(--spacing-md);
   border-radius: 0.625rem;
   border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.tranding-list-card a:hover {
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .tranding-poster {
@@ -272,11 +317,14 @@
   align-self: center;
 }
 
+.upcoming-list {
+  margin-bottom: 2rem;
+}
+
 .upcoming-list-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-sm);
-  margin-bottom: 2rem;
 }
 
 .upcoming-list-card a {
@@ -284,6 +332,14 @@
   padding: var(--spacing-sm);
   border-radius: 0.625rem;
   border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.upcoming-list-card a:hover {
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .upcoming-poster {
@@ -321,11 +377,14 @@
   color: var(--color-gray-75);
 }
 
+.must-watch-list {
+  margin-bottom: 2rem;
+}
+
 .must-watch-list-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-sm);
-  margin-bottom: 2rem;
 }
 
 .must-watch-list-card a {
@@ -333,6 +392,14 @@
   padding: var(--spacing-sm);
   border-radius: 0.625rem;
   border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.must-watch-list-card a:hover {
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .must-watch-title {
@@ -411,9 +478,18 @@
   padding: var(--spacing-sm);
   border-radius: 0.625rem;
   border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
 }
+
+.tranding-shows-list-card a:hover {
+  border: 0.125rem solid var(--color-primary-45);
+}
+
 .tranding-header span {
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 .upcoming-shows-list-card {
@@ -427,6 +503,14 @@
   padding: var(--spacing-sm);
   border-radius: 0.625rem;
   border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.upcoming-shows-list-card a:hover {
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .closed-section {

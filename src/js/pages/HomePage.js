@@ -1,12 +1,14 @@
-import { tmdbAPI, getMoviespages, getMoviesPage } from '../api/api.js';
-import { renderPosters } from '../components/RenderPosters.js';
+import { tmdbAPI, getMoviespages, getMoviesPage } from "../api/api.js";
+import { renderPosters } from "../components/RenderPosters.js";
+import { pagination } from "../components/Pagination.js";
+import { getCastPaginationConfig } from "../components/PaginationConfig.js";
 
 export async function HomePage() {
   const moviesData = await getMoviesPage(3);
   const moviesDataArray = moviesData.results;
-  
-  const container = document.createElement('div');
-  container.id = 'main-page';
+
+  const container = document.createElement("div");
+  container.id = "main-page";
   container.innerHTML = `
     <section class='hero'>
       <div class='hero-info'>
@@ -25,11 +27,15 @@ export async function HomePage() {
      </section>
   `;
 
-  const heroBackgroundCont = container.querySelector('.hero-background');
-  heroBackgroundCont.innerHTML = moviesDataArray.slice(0, 18).map(m => `
+  const heroBackgroundCont = container.querySelector(".hero-background");
+  heroBackgroundCont.innerHTML = moviesDataArray
+    .slice(0, 18)
+    .map(
+      (m) => `
     <img src='https://image.tmdb.org/t/p/original${m.poster_path}' />
-  `).join('')
-  
+  `,
+    )
+    .join("");
 
   const genresData = await tmdbAPI.getGenreMovies();
   const movies = await getMoviespages(44);
@@ -38,8 +44,8 @@ export async function HomePage() {
   container.append(genreSection);
 
   function createGenreSection(genres, movies) {
-    const genreSection = document.createElement('section');
-    genreSection.className = 'genre-section';
+    const genreSection = document.createElement("section");
+    genreSection.className = "genre-section";
     genreSection.innerHTML = `
       <div class='genre-header'>
         <div class='genre-info'>
@@ -54,19 +60,19 @@ export async function HomePage() {
 
       <div class='genre-list'></div>
     `;
-    
-    const listEl = genreSection.querySelector('.genre-list');
-    const prevBtn = genreSection.querySelector('.genre-prev');
-    const nextBtn = genreSection.querySelector('.genre-next');
+
+    const listEl = genreSection.querySelector(".genre-list");
+    const prevBtn = genreSection.querySelector(".genre-prev");
+    const nextBtn = genreSection.querySelector(".genre-next");
 
     let startIndex = 0;
-    const pageSize = 4;
-    const step = 4;
+    let { pageSize, step} = getCastPaginationConfig(2, 2, 5, 5)
 
     function renderGenres() {
       listEl.innerHTML = genres
         .slice(startIndex, startIndex + pageSize)
-        .map(g => `
+        .map(
+          (g) => `
           <a href="#/search?genre=${g.id}" class='genre-item'>
             <div class='genre-img-list' data-genre-id='${g.id}'></div>
             <div class='genre-footer'>
@@ -74,22 +80,22 @@ export async function HomePage() {
               <img src='./assets/icons/arrowRight.svg' />
             </div>
           </a>
-        `)
-        .join('');
+        `,
+        )
+        .join("");
     }
-  
 
     function hydratePosters() {
-      const containers = genreSection.querySelectorAll('.genre-img-list');
-      containers.forEach(containerEl => {
+      const containers = genreSection.querySelectorAll(".genre-img-list");
+      containers.forEach((containerEl) => {
         const genreid = Number(containerEl.dataset.genreId);
 
-        const moviesForGenres = movies.filter(m => 
-          Array.isArray(m.genre_ids) && m.genre_ids.includes(genreid)
-        )
+        const moviesForGenres = movies.filter(
+          (m) => Array.isArray(m.genre_ids) && m.genre_ids.includes(genreid),
+        );
 
         renderPosters(containerEl, moviesForGenres, 4);
-      })
+      });
     }
 
     function render() {
@@ -101,15 +107,20 @@ export async function HomePage() {
       nextBtn.disabled = startIndex === maxStart;
     }
 
-    prevBtn.addEventListener('click', () => {
-      startIndex = Math.max(0, startIndex - step);
-      render();
-    });
-
-    nextBtn.addEventListener('click', () => {
-      const maxStart = Math.max(0, genres.length - pageSize);
-      startIndex = Math.min(maxStart, startIndex + step);
-      render();
+    pagination({
+      prevBtn,
+      nextBtn,
+      pageSize,
+      step,
+      root: genreSection,
+      targetClass: 'genre-item',
+      getTotal: () => genres.length,
+      getStart: () => startIndex,
+      onChange: (newStart) => {
+        startIndex = newStart;
+        render();
+      },
+      
     });
 
     render();
@@ -117,8 +128,8 @@ export async function HomePage() {
     return genreSection;
   }
 
-  const deviceCompatibilitySection = document.createElement('section');
-  deviceCompatibilitySection.className = 'deviceCompatibilitySection';
+  const deviceCompatibilitySection = document.createElement("section");
+  deviceCompatibilitySection.className = "deviceCompatibilitySection";
   deviceCompatibilitySection.innerHTML = `
     <div class='device-compatibility-header'>
       <h2>We Provide you streaming experience across various devices.</h2>
@@ -181,11 +192,11 @@ export async function HomePage() {
         <p>StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store</p>
       </div>
     </div>
-  `
+  `;
   container.append(deviceCompatibilitySection);
 
-  const faqSection = document.createElement('section');
-  faqSection.className = 'faqSection';
+  const faqSection = document.createElement("section");
+  faqSection.className = "faqSection";
   faqSection.innerHTML = `
     <div class='faq-header'>
       <div class='faq-header-info'>
@@ -298,22 +309,22 @@ export async function HomePage() {
 
   container.append(faqSection);
 
-  const listQuestions = faqSection.querySelector('.faq-questions');
+  const listQuestions = faqSection.querySelector(".faq-questions");
 
-  listQuestions.addEventListener('click', (e) => {
-    const item = e.target.closest('.faq-question');
-    if(!item) return;
-    
-    const desc = item.querySelector('.faq-description'); 
-    const btn = item.querySelector('.faq-question-btn');
+  listQuestions.addEventListener("click", (e) => {
+    const item = e.target.closest(".faq-question");
+    if (!item) return;
+
+    const desc = item.querySelector(".faq-description");
+    const btn = item.querySelector(".faq-question-btn");
     const secondSpan = btn.children[1];
 
-    desc.classList.toggle('visiable')
-    secondSpan.classList.toggle('is-closed')
-  })
+    desc.classList.toggle("visiable");
+    secondSpan.classList.toggle("is-closed");
+  });
 
-  const subscriptionSection = document.createElement('section');
-  subscriptionSection.className = 'subscription';
+  const subscriptionSection = document.createElement("section");
+  subscriptionSection.className = "subscription";
 
   subscriptionSection.innerHTML = `
     <div class='subscription-header'>
@@ -381,27 +392,38 @@ export async function HomePage() {
 
   container.append(subscriptionSection);
 
-  const buttons = subscriptionSection.querySelectorAll('.subscription-btn');
+  const buttons = subscriptionSection.querySelectorAll(".subscription-btn");
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      buttons.forEach(b => b.classList.remove('subscription-hover'));
-      btn.classList.add('subscription-hover');
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      buttons.forEach((b) => b.classList.remove("subscription-hover"));
+      btn.classList.add("subscription-hover");
 
-      const yearlyBtn = e.target.closest('.yearly-btn');
-      
-      const monthly = subscriptionSection.querySelectorAll('.subscription-price-monthly');
-      const yearly = subscriptionSection.querySelectorAll('.subscription-price-yearly');
+      const yearlyBtn = e.target.closest(".yearly-btn");
 
-      if(yearlyBtn) {
-        yearly.forEach(y => y.classList.remove('closed'))
-        monthly.forEach(m => m.classList.add('closed'))
+      const monthly = subscriptionSection.querySelectorAll(
+        ".subscription-price-monthly",
+      );
+      const yearly = subscriptionSection.querySelectorAll(
+        ".subscription-price-yearly",
+      );
+
+      if (yearlyBtn) {
+        yearly.forEach((y) => y.classList.remove("closed"));
+        monthly.forEach((m) => m.classList.add("closed"));
       } else {
-        yearly.forEach(y => y.classList.add('closed'))
-        monthly.forEach(m => m.classList.remove('closed'))
+        yearly.forEach((y) => y.classList.add("closed"));
+        monthly.forEach((m) => m.classList.remove("closed"));
       }
-    })
-  })
+
+      const subPlan = subscriptionSection.querySelectorAll('.subscriprion-plan');
+      subPlan.forEach(p => {
+        p.classList.remove('is-reveal')
+        void p.offsetWidth;
+        p.classList.add('is-reveal')
+      })
+    });
+  });
 
   return container;
 }

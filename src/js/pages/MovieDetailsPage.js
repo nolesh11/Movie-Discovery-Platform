@@ -186,9 +186,9 @@ export async function MovieDetailsPage({ id }) {
     const containerDir = movieInfo.querySelector(".movie-director-list");
     const director = credits.crew.filter((j) => j.job === "Director");
     const containerMus = movieInfo.querySelector(".movie-music-list");
-    const music = credits.crew.filter(
-      (j) => j.department === "Sound",
-    ).slice(0, 1);       
+    const music = credits.crew
+      .filter((j) => j.department === "Sound")
+      .slice(0, 1);
 
     containerDir.innerHTML = director
       .map((j) => {
@@ -209,7 +209,6 @@ export async function MovieDetailsPage({ id }) {
       .map((m) => {
         const img = filterProfileImg(m.profile_path);
         return `
-          <div class='movie-music-item'>
             <div class='music-profile-photo'>
               <img src='${img}' alt='Profile photo' />
             </div>
@@ -217,7 +216,6 @@ export async function MovieDetailsPage({ id }) {
               <h6>${m.name}</h6>
               <p>From No Data</p>
             </div>
-          </div>
             
           `;
       })
@@ -253,6 +251,8 @@ export async function MovieDetailsPage({ id }) {
       nextBtn,
       pageSize,
       step,
+      root: movieInfo,
+      targetClass: "cast-img",
       getTotal: () => dataCast.length,
       getStart: () => startIndex,
       onChange: (newStart) => {
@@ -278,7 +278,7 @@ export async function MovieDetailsPage({ id }) {
       const stars = Math.round(rating) / 2;
       return (stars * 100) / 5;
     }
-    
+
     function render() {
       const visiable = data.slice(startIndex, startIndex + pageSize);
 
@@ -288,15 +288,15 @@ export async function MovieDetailsPage({ id }) {
           return `
           <div class='movie-review-user-info'>
             <div class='movie-review-uner-info'>
-                <div class='user-name'>
-                  <p>${r.author}</p>
-                  <p>From No Data</p>
-                </div>
-                <div class='user-review-rate'>
-                  <div class='stars-rating' style="--fill: ${answer}%"></div>
-                  <span>${Math.round((r.author_details.rating / 2) * 10) / 10}</span>
-                </div>
+              <div class='user-name'>
+                <p>${r.author}</p>
+                <p>From No Data</p>
               </div>
+              <div class='user-review-rate'>
+                <div class='stars-rating' style="--fill: ${answer}%"></div>
+                <span>${Math.round((r.author_details.rating / 2) * 10) / 10}</span>
+              </div>
+            </div>
               <div class='user-review'>
                 <p>${cutString(r.content, 400)}</p>
               </div>
@@ -312,6 +312,8 @@ export async function MovieDetailsPage({ id }) {
       nextBtn,
       pageSize,
       step,
+      root: movieInfo,
+      targetClass: "movie-review-user-info",
       getTotal: () => data.length,
       getStart: () => startIndex,
       onChange: (newStart) => {

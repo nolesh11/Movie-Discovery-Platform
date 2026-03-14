@@ -1,6 +1,6 @@
 #main-page {
   margin-bottom: 7.5rem;
-} 
+}
 
 .hero {
   position: relative;
@@ -21,7 +21,7 @@
   margin-top: -8.75rem;
   margin-bottom: -4rem;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
   pointer-events: none;
   margin-left: -1rem;
@@ -36,9 +36,9 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.85) 0%,
-    rgba(0,0,0,0.35) 45%,
-    rgba(0,0,0,0) 100%
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0) 100%
   );
   z-index: 2;
   pointer-events: none;
@@ -50,8 +50,8 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  overflow: hidden;               
-  place-items: stretch;     
+  overflow: hidden;
+  place-items: stretch;
   place-content: stretch;
   position: absolute;
   top: -8.75rem;
@@ -59,14 +59,13 @@
   margin-left: -1rem;
   margin-right: -1rem;
   z-index: 0;
-
 }
 
 .hero-background img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: center; 
+  object-fit: cover;
+  object-position: center;
 }
 
 .hero-logo-container {
@@ -98,10 +97,20 @@
   justify-content: center;
   align-items: center;
   gap: var(--spacing-xs);
-  background-color: var(--color-primary-45);
+  background: var(--color-primary-45);
   padding: 0.875rem var(--spacing-md);
   border-radius: var(--spacing-xs);
-  font-size: var(--font-size-sm );
+  font-size: var(--font-size-sm);
+  border: 0.125rem solid var(--color-primary-45);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.hero-btn:hover {
+  background: none;
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .genre-section {
@@ -121,19 +130,19 @@
 
 .genre-btns {
   width: 12.5rem;
-  padding: .875rem var(--spacing-md);
+  padding: 0.875rem var(--spacing-md);
   display: flex;
   justify-content: center;
   align-self: flex-start;
   gap: var(--spacing-md);
   background-color: var(--color-dark-06);
-  border-radius: .75rem;
-  border: .0625rem solid var(--color-dark-20);
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--color-dark-20);
 }
 
 .genre-btn-bgc {
   background-color: var(--color-dark-10);
-  padding: .875rem;
+  padding: 0.875rem;
 }
 
 .genre-list {
@@ -145,8 +154,17 @@
 .genre-list a {
   background-color: var(--color-dark-10);
   padding: var(--spacing-md);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.0625rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.genre-list a:hover {
+  background: none;
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .genre-img-list {
@@ -155,9 +173,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-xs);
-  aspect-ratio: 1 / 1;  
-  overflow: hidden;               
-  place-items: stretch;     
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  place-items: stretch;
   place-content: stretch;
   margin-bottom: var(--spacing-md);
 }
@@ -165,9 +183,9 @@
 .genre-img-list img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: center;   
-  border-radius: .625rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.625rem;
 }
 
 .genre-footer {
@@ -194,29 +212,37 @@
 
 .device-compatibility-info___card {
   background: linear-gradient(
-    to right top,   
+    to right top,
     rgb(15, 15, 15) 50%,
     rgb(229, 0, 0, 0.1)
   );
   padding: var(--spacing-md);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15)
+  border-radius: 0.625rem;
+  border: 0.125rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.device-compatibility-info___card:hover {
+  border: 0.125rem solid var(--color-primary-45);
 }
 
 .card-name {
   display: flex;
   align-items: center;
-  gap: .625rem;
+  gap: 0.625rem;
   margin-bottom: 1.25rem;
 }
 
 .card-img {
   width: 2.75rem;
   height: 2.75rem;
-  padding: .625rem;
+  padding: 0.625rem;
   background: var(--color-dark-08);
   border-radius: var(--spacing-xs);
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.0625rem solid var(--color-dark-15);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,8 +251,8 @@
 .card-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;             
-  display: block; 
+  object-fit: contain;
+  display: block;
 }
 
 .faqSection {
@@ -242,12 +268,22 @@
 }
 
 .faq-header-info-btn button {
-  padding: .875rem 1.25rem;
+  padding: 0.875rem 1.25rem;
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-absolute-white);
   background: var(--color-primary-45);
-  border-radius: .375rem;
+  border-radius: 0.375rem;
+  border: 0.125rem solid var(--color-primary-45);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.faq-header-info-btn button:hover {
+  border: 0.125rem solid var(--color-primary-45);
+  background: none;
 }
 
 .faq-questions {
@@ -261,7 +297,7 @@
 }
 
 .faq-question:not(:first-child)::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -277,27 +313,28 @@
   margin-top: -1.25rem;
 }
 
-.faq-question:nth-child(7), .faq-question:nth-child(8) {
+.faq-question:nth-child(7),
+.faq-question:nth-child(8) {
   display: none;
 }
 
 .faq-question p:first-child {
   background: var(--color-dark-12);
-  padding: .75rem;
+  padding: 0.75rem;
   color: var(--color-absolute-white);
   font-weight: 600;
   text-align: center;
-  border-radius: .375rem;
-  border: .125rem solid var(--color-dark-15);
+  border-radius: 0.375rem;
+  border: 0.125rem solid var(--color-dark-15);
 }
 
 .faq-description {
-  display: none
+  display: none;
 }
 
 .faq-description.visiable {
   display: block;
-  margin-top: .75rem;
+  margin-top: 0.75rem;
 }
 
 .faq-question-info {
@@ -314,10 +351,10 @@
 
 .faq-question-btn span {
   grid-area: 1/1;
-  display: block;  
+  display: block;
   background: var(--color-absolute-white);
   width: var(--spacing-sm);
-  height: .125rem;
+  height: 0.125rem;
 }
 
 .faq-question-btn span:nth-child(2) {
@@ -330,44 +367,76 @@
 
 .subscription-header {
   margin-bottom: var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
 }
 
 .subscription-header-btns {
+  flex: 0 0 auto;
+  align-self: end;
   margin-top: 1.25rem;
   padding: var(--spacing-xs);
   width: fit-content;
+  height: fit-content;
   background: var(--color-dark-06);
   border-radius: var(--spacing-xs);
-  border: .0625rem solid var(--clor-dark-15);
+  border: 0.0625rem solid var(--clor-dark-15);
 }
 
 .subscription-header-btns button {
   color: var(--color-gray-60);
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   font-size: var(--font-size-sm);
 }
 
 .subscription-header-btns button.subscription-hover {
   background: var(--color-dark-12);
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   color: var(--color-absolute-white);
-  border-radius: .375rem;
+  border-radius: 0.375rem;
 }
 
 .subscription-plans {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .subscriprion-plan {
   width: 100%;
   padding: var(--spacing-md);
   background: var(--color-dark-10);
-  border-radius: .625rem;
-  border: .0625rem solid var(--color-dark-15);
+  border-radius: 0.625rem;
+  border: 0.125rem solid var(--color-dark-15);
   display: flex;
   flex-direction: column;
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.subscriprion-plan:hover {
+  border: 0.125rem solid var(--color-primary-45);
+}
+
+.is-reveal {
+  animation: cardReveal 1s ease;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .subscriprion-plan p {
@@ -399,7 +468,7 @@
 
 .subscription-plan-btns {
   display: flex;
-  gap: .75rem;
+  gap: 0.75rem;
   width: 100%;
 }
 
@@ -407,20 +476,38 @@
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-absolute-white);
-  padding: .975rem 1.25rem;
-  border-radius: .375rem;
+  padding: 0.975rem 1.25rem;
+  border-radius: 0.375rem;
   flex: 1;
 }
 
 .subscription-plan-btns button:first-child {
   background: var(--color-dark-08);
-  border: .0625rem solid var(--color-dark-15);
+  border: 0.125rem solid var(--color-dark-15);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.subscription-plan-btns button:first-child:hover {
+  border: 0.125rem solid var(--color-primary-45);
+  background: var(--color-primary-45);
 }
 
 .subscription-plan-btns button:last-child {
   background: var(--color-primary-45);
+  border: 0.125rem solid var(--color-primary-45);
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
 }
 
+.subscription-plan-btns button:last-child:hover {
+  border: 0.125rem solid var(--color-primary-45);
+  background: var(--color-dark-08);
+}
 
 /* media queries */
 
@@ -437,7 +524,7 @@
 @media (min-width: 1024px) {
   #main-page {
     margin-bottom: 7.5rem;
-  } 
+  }
 
   .hero {
     margin-bottom: 9.375rem;
@@ -470,7 +557,7 @@
 
   .hero-logo {
     width: 18.75rem;
-    height: 18.75rem
+    height: 18.75rem;
   }
   .hero-logo-btn {
     width: 4rem;
@@ -488,14 +575,14 @@
   }
 
   .genre-list {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-md);
   }
 
   .deviceCompatibilitySection {
     margin-bottom: 7.5rem;
-  } 
+  }
 
   .device-compatibility-header {
     margin-bottom: 3.75rem;
@@ -507,12 +594,12 @@
   }
 
   .card-name {
-    gap: .75rem;
+    gap: 0.75rem;
   }
 
   .card-img {
     width: 3.375rem;
-    height: 3.375rem; 
+    height: 3.375rem;
   }
 
   .faqSection {
@@ -522,7 +609,7 @@
   .faq-header {
     flex-direction: row;
     margin-bottom: 3.75rem;
-  }  
+  }
 
   .faq-header-info-btn {
     flex: 0 0 auto;
@@ -531,9 +618,10 @@
 
   .faq-questions {
     grid-template-columns: repeat(2, 1fr);
-  }  
+  }
 
-  .faq-question:nth-child(7), .faq-question:nth-child(8) {
+  .faq-question:nth-child(7),
+  .faq-question:nth-child(8) {
     display: block;
   }
 
@@ -564,12 +652,12 @@
   .subscription-price span:last-child {
     font-size: var(--font-size-base);
   }
-} 
+}
 
 @media (min-width: 1280px) {
   #main-page {
     margin-bottom: 9.375rem;
-  } 
+  }
 
   .hero {
     margin-bottom: 12.5rem;
@@ -595,7 +683,7 @@
   .hero-background {
     top: -30rem;
   }
-  
+
   .hero h1 {
     font-size: 3.625rem;
   }
@@ -605,7 +693,7 @@
   }
   .hero-logo {
     width: 29.375rem;
-    height: 29.375rem
+    height: 29.375rem;
   }
   .hero-logo-btn {
     width: 6.375rem;
@@ -619,26 +707,25 @@
 
   .deviceCompatibilitySection {
     margin-bottom: 9.375rem;
-  } 
-
+  }
 
   .device-compatibility-header {
     margin-bottom: 5rem;
   }
 
   .card-name {
-    gap: .875rem;
+    gap: 0.875rem;
     margin-bottom: 1.875rem;
   }
 
   .card-img {
     width: 4.5rem;
-    height: 4.5rem; 
+    height: 4.5rem;
   }
 
   .faqSection {
     margin-bottom: 9.375rem;
-  }  
+  }
 
   .faq-header {
     margin-bottom: 5rem;
