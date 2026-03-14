@@ -321,6 +321,7 @@ export async function HomePage() {
 
     desc.classList.toggle("visiable");
     secondSpan.classList.toggle("is-closed");
+    item.classList.toggle("is-reveal");
   });
 
   const subscriptionSection = document.createElement("section");
