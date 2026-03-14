@@ -368,12 +368,12 @@
 .subscription-header {
   margin-bottom: var(--spacing-xl);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 .subscription-header-btns {
   flex: 0 0 auto;
-  align-self: end;
   margin-top: 1.25rem;
   padding: var(--spacing-xs);
   width: fit-content;
@@ -631,6 +631,14 @@
 
   .faq-description.visiable {
     margin-left: 4rem;
+  }
+
+  .subscription-header {
+    flex-direction: row;
+  }
+
+  .subscription-header-btns {
+    align-self: end;
   }
 
   .subscription-plans {
