@@ -23,13 +23,12 @@
   display: block;
 }
 
-input {
+.search-input {
   display: none;
   color: var(--color-absolute-white);
   border: .0625rem solid var(--color-dark-15);
   border-radius: .625rem;
   padding: .625rem;
-  /* margin-bottom: 1.25rem; */
 }
 
 .result-img {
@@ -48,16 +47,8 @@ input {
 
 /* media queries */
 
-@media (max-width: 640px) {
-
-}
-
 @media (min-width: 1024px) {
   .search-container {
     top: 100%;
   }
-}
-
-@media (min-width: 1280px) {
-
 }
