@@ -1,6 +1,7 @@
 import { getMovieById, getMovieCredits, getMovieReview } from "../api/api.js";
 import { pagination } from "../components/Pagination.js";
 import { getCastPaginationConfig } from "../components/PaginationConfig.js";
+import { cutString } from "../components/CutString.js";
 
 export async function MovieDetailsPage({ id }) {
   const [movieById, credits, review] = await Promise.all([
@@ -277,16 +278,7 @@ export async function MovieDetailsPage({ id }) {
       const stars = Math.round(rating) / 2;
       return (stars * 100) / 5;
     }
-
-    function cutString(str, max) {
-      if (!str) return "";
-      if (str.length <= max) return str;
-
-      const cut = str.slice(0, max);
-      const lastSpace = cut.lastIndexOf(" ");
-      return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut) + "...";
-    }
-
+    
     function render() {
       const visiable = data.slice(startIndex, startIndex + pageSize);
 
