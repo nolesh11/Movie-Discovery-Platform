@@ -849,9 +849,6 @@ export async function MoviesShowsPage() {
 
     render();
 
-    const a = showsMustWatch.getElementsByTagName('a');
-    console.log(a);
-
     return showsMustWatch;
   }
 
