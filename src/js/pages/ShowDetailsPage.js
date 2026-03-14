@@ -17,10 +17,6 @@ export async function ShowsDetailsPage({ id }) {
     getShowReviews(id),
   ]);
 
-  console.log(showById);
-  console.log(season);
-  console.log(credits);
-
   const { name, overview, backdrop_path, first_air_date, vote_average } =
     showById;
 
@@ -159,12 +155,12 @@ export async function ShowsDetailsPage({ id }) {
   async function innerShowSeasons() {
     const container = showInfo.querySelector(".show-seasons-info");
 
+
     const seasonNums = (showById.seasons ?? []).map((s) => s.season_number);
 
     const seasons = await Promise.all(
       seasonNums.map((n) => getTvSeason(id, n)),
     );
-    console.log(seasons);
 
     function renderSeason() {
       container.innerHTML = seasons
